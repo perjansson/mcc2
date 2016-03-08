@@ -1,0 +1,43 @@
+{
+  "name": "mcc2",
+  "version": "1.0.0",
+  "description": "Meeting Cost Calculator 2",
+  "main": "main.js",
+  "dependencies": {
+    "angular2": "2.0.0-beta.8",
+    "bootstrap": "^3.3.6",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "font-awesome": "^4.5.0",
+    "jquery": "^2.2.1",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "systemjs": "0.19.20",
+    "zone.js": "0.5.15"
+  },
+  "devDependencies": {
+    "live-server": "^0.8.1",
+    "typescript": "^1.7.5",
+    "concurrently": "^1.0.0",
+    "typings": "^0.6.8"
+  },
+  "scripts": {
+    "postinstall": "npm run typings install",
+    "tsc": "tsc --outDir dist",
+    "tsc:w": "tsc -w --outDir dist",
+    "live": "live-server",
+    "start": "concurrent \"npm run tsc:w\" \"npm run live\" ",
+    "typings": "typings"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/perjansson/mcc2.git"
+  },
+  "keywords": [],
+  "author": "Per Jansson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/perjansson/mcc2/issues"
+  },
+  "homepage": "https://github.com/perjansson/mcc2"
+}
