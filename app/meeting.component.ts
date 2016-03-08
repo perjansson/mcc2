@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Meeting} from './meeting';
 import {MeetingStatusComponent} from './meeting-status.component';
+import {CurrencyService, Currency} from './currency.service';
 
 @Component({
   selector: 'meeting',
@@ -19,7 +20,7 @@ import {MeetingStatusComponent} from './meeting-status.component';
     }
     select.input-xl {
       height: 60px;
-      line-height: 60px;
+      line-height: 35px;
       -webkit-appearance: none;
       -webkit-border-radius: 30px;
     }
@@ -48,12 +49,17 @@ import {MeetingStatusComponent} from './meeting-status.component';
             <div class="form-group col-xs-12 col-sm-4">
               <input id="numberOfAttendees" type="number" class="form-control input-xl" placeholder="Number of attendees">
             </div>
+
             <div class="form-group col-xs-12 col-sm-4">
               <input id="averageHourlyRate" type="number" class="form-control input-xl" placeholder="Average hourly rate">
             </div>
+
             <div class="form-group col-xs-12 col-sm-4">
-              <select id="currency" class="form-control input-xl" placeholder="Currency"></select>
+              <select id="currency" [(ngModel)]="meeting.currency" class="form-control input-xl" placeholder="Currency">
+                <option *ngFor="#currency of currencies" [value]="currency.key">{{currency.name}}</option>
+              </select>
             </div>
+
             <div class="form-group col-xs-12 meeting-control text-center">
               <span id="startButton" [hidden]="meeting.isRunning() || meeting.isPaused()" class="animated fadeIn">
                 <button class="btn btn-link" (click)="meeting.start()">
@@ -96,11 +102,20 @@ import {MeetingStatusComponent} from './meeting-status.component';
 export class MeetingComponent implements OnInit {
 
   private meeting: Meeting;
+  private currencies: Currency[];
 
-  constructor() { }
+  constructor(private _currencyService: CurrencyService) { }
 
   ngOnInit() {
     this.meeting = new Meeting();
+    this.getCurrencies();
+  }
+
+  getCurrencies() {
+    this._currencyService.getCurrencies()
+      .subscribe(
+        currencies => this.currencies = currencies
+    );
   }
 
 }

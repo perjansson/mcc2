@@ -3,7 +3,7 @@ export class Meeting {
   name: string;
   numberOfAttendees: number;
   averageHourlyRate: number;
-  currency: string;
+  currency: string = 'BTC';
   status: string;
   meetingStartTime: Date;
   meetingStopTime: Date;
@@ -14,9 +14,7 @@ export class Meeting {
   }
 
   start() {
-    this.clear();
-    this.id = this.generateId();
-    this.status = 'running';
+    this.reStart();
   }
 
   resume() {
@@ -31,11 +29,13 @@ export class Meeting {
     this.status = 'stopped';
   }
 
-  clear() {
-    this.id = null;
+  reStart() {
+    this.id = this.generateId();
     this.name = null;
+    this.currency = 'BTC';
     this.meetingStartTime = null;
     this.meetingStopTime = null;
+    this.status = 'running';
   }
 
   generateId() {

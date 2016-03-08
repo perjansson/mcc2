@@ -7,12 +7,11 @@ System.register([], function(exports_1, context_1) {
         execute: function() {
             Meeting = (function () {
                 function Meeting() {
+                    this.currency = 'BTC';
                     this.status = 'notStarted';
                 }
                 Meeting.prototype.start = function () {
-                    this.clear();
-                    this.id = this.generateId();
-                    this.status = 'running';
+                    this.reStart();
                 };
                 Meeting.prototype.resume = function () {
                     this.status = 'running';
@@ -23,11 +22,13 @@ System.register([], function(exports_1, context_1) {
                 Meeting.prototype.stop = function () {
                     this.status = 'stopped';
                 };
-                Meeting.prototype.clear = function () {
-                    this.id = null;
+                Meeting.prototype.reStart = function () {
+                    this.id = this.generateId();
                     this.name = null;
+                    this.currency = 'BTC';
                     this.meetingStartTime = null;
                     this.meetingStopTime = null;
+                    this.status = 'running';
                 };
                 Meeting.prototype.generateId = function () {
                     return 'fakeId';

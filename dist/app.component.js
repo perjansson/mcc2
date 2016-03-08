@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router', './meeting.component'], function(exports_1, context_1) {
+System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router', 'angular2/http', './meeting.component', './currency.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var browser_1, core_1, router_1, meeting_component_1;
+    var browser_1, core_1, router_1, http_1, meeting_component_1, currency_service_1;
     var AppComponent;
     return {
         setters:[
@@ -23,8 +23,14 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
             function (meeting_component_1_1) {
                 meeting_component_1 = meeting_component_1_1;
+            },
+            function (currency_service_1_1) {
+                currency_service_1 = currency_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -40,7 +46,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
                         styles: ["\n    nav {\n      margin-bottom: 40px;\n    }\n    nav > .row {\n      margin-top: 30px;\n    }\n    nav button {\n      margin: 0px 5px;\n    }\n    nav button.router-link-active {\n      background-color: #286090;\n      border-color: #204d74;\n    }\n    hr {\n      border: 0;\n      height: 0;\n      border-top: 1px solid rgba(0, 0, 0, 0.1);\n      border-bottom: 1px solid rgba(255, 255, 255, 0.3);\n      margin: 75px 0;\n    }\n  "],
                         template: "\n    <nav class=\"row animated fadeIn\">\n      <div class=\"row\">\n        <div class=\"col-xs-12 text-center\">\n          <button class=\"btn btn-primary btn-xl\" [class.active]=\"getLinkStyle('#/meeting')\" [routerLink]=\"['Meeting']\"><i class=\"fa fa-clock-o\"></i> Meeting</button>\n          <button class=\"btn btn-primary btn-xl disabled\" [class.active]=\"getLinkStyle('#/toplist')\"><i class=\"fa fa-list\"></i> Top list</button>\n          <button class=\"btn btn-primary btn-xl disabled\" [class.active]=\"getLinkStyle('#/about')\"><i class=\"fa fa-users\"></i> About</button>\n        </div>\n      </div>\n    </nav>\n    <hr/>\n    <main class=\"row animated fadeIn\">\n      <div>\n        <div class=\"col-xs-12\">\n          <router-outlet></router-outlet>\n        </div>\n      </div>\n    </main>\n  ",
                         directives: [router_1.ROUTER_DIRECTIVES],
-                        providers: [router_1.Location]
+                        providers: [router_1.Location, http_1.HTTP_PROVIDERS, currency_service_1.CurrencyService]
                     }),
                     router_1.RouteConfig([
                         { path: '/meeting', name: 'Meeting', component: meeting_component_1.MeetingComponent, useAsDefault: true }
