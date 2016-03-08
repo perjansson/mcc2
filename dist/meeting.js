@@ -44,8 +44,12 @@ System.register([], function(exports_1, context_1) {
                 Meeting.prototype.isStopped = function () {
                     return this.status === 'stopped';
                 };
-                Meeting.prototype.getMeetingCost = function () {
+                Meeting.prototype.getCost = function () {
                     // TODO
+                    return 1337;
+                };
+                Meeting.prototype.getCurrency = function () {
+                    return 'SEK';
                 };
                 return Meeting;
             }());

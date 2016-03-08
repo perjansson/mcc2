@@ -58,8 +58,13 @@ export class Meeting {
     return this.status === 'stopped';
   }
 
-  getMeetingCost() {
+  getCost() {
     // TODO
+    return 1337;
+  }
+
+  getCurrency() {
+    return 'SEK';
   }
 
 }

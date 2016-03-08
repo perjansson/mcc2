@@ -1,6 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Meeting} from './meeting';
+import {MeetingStatusComponent} from './meeting-status.component';
 
 @Component({
   selector: 'meeting',
@@ -83,13 +84,13 @@ import {Meeting} from './meeting';
 
         <div class="row meeting-cost animated fadeIn" [hidden]="!meeting.hasStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <div class="alert alert-info alert-meeting-cost" role="alert"> Meeting cost is <strong>500 BITCOIN</strong></div>
+            <meeting-status [meeting]=meeting></meeting-status>
           </div>
         </div>
         </section>
     </article>
   `,
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
+  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent]
 })
 
 export class MeetingComponent implements OnInit {
