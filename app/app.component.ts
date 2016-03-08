@@ -26,27 +26,20 @@ import {MeetingComponent} from './meeting.component';
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       margin: 75px 0;
     }
-    .btn-xl {
-      font-size: 26px;
-      padding: 13px 20px;
-      border-radius: 8px;
-      margin-left: auto;
-      margin-right: auto;
-    }
   `],
   template: `
-    <nav>
+    <nav class="row animated fadeIn">
       <div class="row">
         <div class="col-xs-12 text-center">
           <button class="btn btn-primary btn-xl" [class.active]="getLinkStyle('#/meeting')" [routerLink]="['Meeting']"><i class="fa fa-clock-o"></i> Meeting</button>
-          <button class="btn btn-primary btn-xl disabled" [class.active]="getLinkStyle('#/toplist')" [routerLink]="['TopList']"><i class="fa fa-clock-o"></i> Top list</button>
-          <button class="btn btn-primary btn-xl disabled" [class.active]="getLinkStyle('#/about')" [routerLink]="['About']"><i class="fa fa-clock-o"></i> About</button>
+          <button class="btn btn-primary btn-xl disabled" [class.active]="getLinkStyle('#/toplist')"><i class="fa fa-list"></i> Top list</button>
+          <button class="btn btn-primary btn-xl disabled" [class.active]="getLinkStyle('#/about')"><i class="fa fa-users"></i> About</button>
         </div>
       </div>
     </nav>
     <hr/>
-    <main>
-      <div class="row">
+    <main class="row animated fadeIn">
+      <div>
         <div class="col-xs-12">
           <router-outlet></router-outlet>
         </div>
