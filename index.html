@@ -8,7 +8,8 @@
 
   <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href='//fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href="node_modules/animate.css/animate.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
 
   <!-- 1. Load libraries -->
   <!-- IE required polyfills, in this exact order -->
@@ -37,18 +38,37 @@
     System.import('dist/app.component')
       .then(null, console.error.bind(console));
   </script>
+
+  <style>
+    * {
+      font-family: 'PT Sans Caption', sans-serif;
+    }
+    body {
+      background-color: #FAF3DC;
+      color: #F74848;
+    }
+    h1 {
+      font-size: 80px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 0px gray;
+    }
+    h1 strong {
+      font-size: 100px;
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- Fork me... -->
-  <a href="https://github.com/perjansson/mcc2" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0; z-index:1031;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <!--a href="https://github.com/perjansson/mcc2" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0; z-index:1031;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a-->
 
   <div class="container text-center">
-    <header>
-      <h1>MCC2 - Meeting Cost Calculator 2</h1>
+    <header class="animated tada">
+      <h1>Meeting Cost Calculator <strong>2</strong></h1>
     </header>
-    <mcc-app>Loading fabulous stuff... please wait...</mcc-app>
+    <mcc-app></mcc-app>
   </div>
 </body>
 
