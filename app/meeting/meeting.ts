@@ -1,12 +1,8 @@
-/// <reference path="../typings/agstopwatch/AGStopWatch.d.ts" />
+/// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
 
-import {Guid} from './guid';
-import {Stopwatch} from './stopwatch';
+import {AGStopwatch} from '../../node_modules/agstopwatch/agstopwatch';
 
-module MeetingStatus {
-    export const STARTED = 'STARTED';
-    export const STOPPED = 'STOPPED';
-}
+const enum MeetingStatus { Started, Stopped };
 
 class Currency {
   key: string;
@@ -19,26 +15,26 @@ class Currency {
 }
 
 export class Meeting {
-  stopWatch: Stopwatch;
+  stopWatch: AGStopwatch;
   id: string;
   numberOfAttendees: number;
   averageHourlyRate: number;
   currency: Currency = new Currency('BTC', 'Bitcoin');
-  status: string = null;
+  status: MeetingStatus = null;
   isGoodMeeting: boolean;
 
   constructor() {
-    this.stopWatch = new Stopwatch();
+    this.stopWatch = new AGStopwatch();
   }
 
   start() {
-    this.status = MeetingStatus.STARTED;
+    this.status = MeetingStatus.Started;
     this.id = Guid.newGuid();
     this.stopWatch.start();
   }
 
   stop() {
-    this.status = MeetingStatus.STOPPED;
+    this.status = MeetingStatus.Stopped;
     this.stopWatch.stop();
   }
 
@@ -47,11 +43,11 @@ export class Meeting {
   }
 
   isStarted() {
-    return this.status === MeetingStatus.STARTED;
+    return this.status === MeetingStatus.Started;
   }
 
   isStopped() {
-    return this.status === MeetingStatus.STOPPED;
+    return this.status === MeetingStatus.Stopped;
   }
 
   getCost() {
@@ -70,4 +66,13 @@ export class Meeting {
     return this.stopWatch.elapsed / 1000;
   }
 
+}
+
+class Guid {
+    static newGuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
 }

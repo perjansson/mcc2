@@ -33,7 +33,7 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', meeting_1.Meeting)
+                    __metadata('design:type', (typeof (_a = typeof meeting_1.Meeting !== 'undefined' && meeting_1.Meeting) === 'function' && _a) || Object)
                 ], MeetingStatusComponent.prototype, "meeting", void 0);
                 MeetingStatusComponent = __decorate([
                     core_1.Component({
@@ -44,6 +44,7 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
                     __metadata('design:paramtypes', [])
                 ], MeetingStatusComponent);
                 return MeetingStatusComponent;
+                var _a;
             }());
             exports_1("MeetingStatusComponent", MeetingStatusComponent);
         }

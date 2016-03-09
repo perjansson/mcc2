@@ -8,10 +8,13 @@ export class Currency {
 
 @Injectable()
 export class CurrencyService {
+
+  static CURRENCIES_API: string = 'app/currency/currencies.json';
+
   constructor(private _http: Http) { }
 
   getCurrencies() {
-    return this._http.get('app/currencies.json')
+    return this._http.get(CurrencyService.CURRENCIES_API)
       .map((response: Response) => <Currency[]>response.json())
       .catch(this.handleError);
   }

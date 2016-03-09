@@ -1,19 +1,16 @@
-/// <reference path="../typings/agstopwatch/AGStopWatch.d.ts" />
-System.register(['../node_modules/agstopwatch/agstopwatch'], function(exports_1, context_1) {
+/// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
+System.register(['../../node_modules/agstopwatch/agstopwatch'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var agstopwatch_1;
-    var MeetingStatus, Currency, Meeting, Guid;
+    var Currency, Meeting, Guid;
     return {
         setters:[
             function (agstopwatch_1_1) {
                 agstopwatch_1 = agstopwatch_1_1;
             }],
         execute: function() {
-            (function (MeetingStatus) {
-                MeetingStatus.STARTED = 'STARTED';
-                MeetingStatus.STOPPED = 'STOPPED';
-            })(MeetingStatus || (MeetingStatus = {}));
+            ;
             Currency = (function () {
                 function Currency(key, name) {
                     this.key = key;
@@ -28,22 +25,22 @@ System.register(['../node_modules/agstopwatch/agstopwatch'], function(exports_1,
                     this.stopWatch = new agstopwatch_1.AGStopwatch();
                 }
                 Meeting.prototype.start = function () {
-                    this.status = MeetingStatus.STARTED;
+                    this.status = 0 /* Started */;
                     this.id = Guid.newGuid();
                     this.stopWatch.start();
                 };
                 Meeting.prototype.stop = function () {
-                    this.status = MeetingStatus.STOPPED;
+                    this.status = 1 /* Stopped */;
                     this.stopWatch.stop();
                 };
                 Meeting.prototype.isNotStarted = function () {
                     return this.status === null;
                 };
                 Meeting.prototype.isStarted = function () {
-                    return this.status === MeetingStatus.STARTED;
+                    return this.status === 0 /* Started */;
                 };
                 Meeting.prototype.isStopped = function () {
-                    return this.status === MeetingStatus.STOPPED;
+                    return this.status === 1 /* Stopped */;
                 };
                 Meeting.prototype.getCost = function () {
                     return Math.round(this.getExactMeetingCost()).toFixed(0);

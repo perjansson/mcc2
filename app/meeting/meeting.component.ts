@@ -2,7 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgForm} from 'angular2/common';
 import {Meeting} from './meeting';
 import {MeetingStatusComponent} from './meeting-status.component';
-import {CurrencyService, Currency} from './currency.service';
+import {CurrencyService, Currency} from '../currency/currency.service';
 
 @Component({
   selector: 'meeting',

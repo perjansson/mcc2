@@ -2,8 +2,8 @@ import {bootstrap} from 'angular2/platform/browser';
 import {provide, Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Location, LocationStrategy, HashLocationStrategy, PathLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {MeetingComponent} from './meeting.component';
-import {CurrencyService} from './currency.service';
+import {MeetingComponent} from './meeting/meeting.component';
+import {CurrencyService} from './currency/currency.service';
 
 @Component({
   selector: 'mcc-app',
