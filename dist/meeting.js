@@ -8,39 +8,30 @@ System.register([], function(exports_1, context_1) {
             Meeting = (function () {
                 function Meeting() {
                     this.currency = 'BTC';
-                    this.status = 'notStarted';
+                    this.reset();
                 }
                 Meeting.prototype.start = function () {
-                    this.reStart();
-                };
-                Meeting.prototype.resume = function () {
-                    this.status = 'running';
-                };
-                Meeting.prototype.pause = function () {
-                    this.status = 'paused';
+                    this.status = 'started';
                 };
                 Meeting.prototype.stop = function () {
                     this.status = 'stopped';
                 };
-                Meeting.prototype.reStart = function () {
+                Meeting.prototype.reset = function () {
+                    this.status = null;
                     this.id = this.generateId();
                     this.name = null;
                     this.currency = 'BTC';
                     this.meetingStartTime = null;
                     this.meetingStopTime = null;
-                    this.status = 'running';
                 };
                 Meeting.prototype.generateId = function () {
                     return 'fakeId';
                 };
-                Meeting.prototype.hasStarted = function () {
-                    return this.status !== 'notStarted';
+                Meeting.prototype.isNotStarted = function () {
+                    return this.status === null;
                 };
-                Meeting.prototype.isRunning = function () {
-                    return this.status === 'running';
-                };
-                Meeting.prototype.isPaused = function () {
-                    return this.status === 'paused';
+                Meeting.prototype.isStarted = function () {
+                    return this.status === 'started';
                 };
                 Meeting.prototype.isStopped = function () {
                     return this.status === 'stopped';

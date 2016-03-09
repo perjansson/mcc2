@@ -10,48 +10,36 @@ export class Meeting {
   isGoodMeeting: boolean;
 
   constructor() {
-    this.status = 'notStarted';
+    this.reset();
   }
 
   start() {
-    this.reStart();
-  }
-
-  resume() {
-    this.status = 'running';
-  }
-
-  pause() {
-    this.status = 'paused';
+    this.status = 'started';
   }
 
   stop() {
     this.status = 'stopped';
   }
 
-  reStart() {
+  reset() {
+    this.status = null;
     this.id = this.generateId();
     this.name = null;
     this.currency = 'BTC';
     this.meetingStartTime = null;
     this.meetingStopTime = null;
-    this.status = 'running';
   }
 
   generateId() {
     return 'fakeId';
   }
 
-  hasStarted() {
-    return this.status !== 'notStarted';
+  isNotStarted() {
+    return this.status === null;
   }
 
-  isRunning() {
-    return this.status === 'running';
-  }
-
-  isPaused() {
-    return this.status === 'paused';
+  isStarted() {
+    return this.status === 'started';
   }
 
   isStopped() {

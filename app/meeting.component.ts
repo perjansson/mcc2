@@ -61,34 +61,28 @@ import {CurrencyService, Currency} from './currency.service';
             </div>
 
             <div class="form-group col-xs-12 meeting-control text-center">
-              <span id="startButton" [hidden]="meeting.isRunning() || meeting.isPaused()" class="animated fadeIn">
-                <button class="btn btn-link" (click)="meeting.start()">
+              <span id="startButton" [hidden]="meeting.isStarted()" class="animated fadeIn">
+                <button class="btn btn-link" (click)="meeting.start()" title="Start">
                   <i class="fa fa-play"></i>
                 </button>
               </span>
 
-              <span id="resumeButton" [hidden]="!meeting.hasStarted() || meeting.isRunning() || meeting.isStopped()" class="animated fadeIn">
-                <button class="btn btn-link" (click)="meeting.resume()">
-                  <i class="fa fa-play"></i>
-                </button>
-              </span>
-
-              <span id="pauseButton" [hidden]="!meeting.hasStarted() || meeting.isPaused() || meeting.isStopped()" class="animated fadeIn">
-                <button class="btn btn-link" (click)="meeting.pause()">
-                  <i class="fa fa-pause"></i>
-                </button>
-              </span>
-
-              <span id="stopButton" [hidden]="!meeting.hasStarted() || meeting.isStopped()" class="animated fadeIn">
-                <button class="btn btn-link" (click)="meeting.stop()">
+              <span id="stopButton" [hidden]="meeting.isNotStarted() || meeting.isStopped()" class="animated fadeIn">
+                <button class="btn btn-link" (click)="meeting.stop()" title="Stop">
                   <i class="fa fa-stop"></i>
+                </button>
+              </span>
+
+              <span id="resetButton" [hidden]="meeting.isNotStarted() || meeting.isStarted()" class="animated fadeIn">
+                <button class="btn btn-link" (click)="meeting.reset()" title="Reset">
+                  <i class="fa fa-minus-square"></i>
                 </button>
               </span>
             </div>
           </div>
         </form>
 
-        <div class="row meeting-cost animated fadeIn" [hidden]="!meeting.hasStarted()">
+        <div class="row meeting-cost animated fadeIn" [hidden]="meeting.isNotStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <meeting-status [meeting]=meeting></meeting-status>
           </div>
