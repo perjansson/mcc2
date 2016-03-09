@@ -27,6 +27,10 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
                 MeetingStatusComponent.prototype.onMeetingClick = function () {
                     alert('Detail page for a meeting is not implemented yet...');
                 };
+                MeetingStatusComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.interval = setInterval(function () { return _this.currentMeetingCost = _this.meeting.getCost(); }, 100);
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', meeting_1.Meeting)
@@ -34,8 +38,8 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
                 MeetingStatusComponent = __decorate([
                     core_1.Component({
                         selector: 'meeting-status',
-                        styles: ["\n   .alert-meeting-cost {\n      font-size: 24px;\n      margin-top: 25px;\n      border-radius: 20px;\n      cursor: pointer;\n    }\n   .alert-meeting-cost:hover {\n      -moz-box-shadow: 0 0 75px #7EC6DE;\n      -webkit-box-shadow: 0 0 75px #7EC6DE;\n      box-shadow: 0px 0px 75px #7EC6DE;\n    }\n   .alert-meeting-cost small {\n      font-size: 14px;\n      color: lightgray;\n    }\n  "],
-                        template: "\n    <div class=\"alert alert-info alert-meeting-cost\" role=\"alert\" (click)=\"onMeetingClick()\">\n      Meeting cost is <strong>{{meeting.getCost()}} {{meeting.getCurrency()}}</strong>\n      <p>\n        <small>{{meeting.id}}</small>\n      </p>\n    </div>\n  "
+                        styles: ["\n   .alert-meeting-cost {\n      font-size: 36px;\n      margin-top: 25px;\n      border-radius: 20px;\n      cursor: pointer;\n    }\n   .alert-meeting-cost:hover {\n      -moz-box-shadow: 0 0 150px darkgray;\n      -webkit-box-shadow: 0 0 150px darkgray;\n      box-shadow: 0px 0px 150px darkgray;\n    }\n   .alert-meeting-cost small {\n      font-size: 14px;\n      color: lightgray;\n    }\n  "],
+                        template: "\n    <div class=\"alert alert-danger alert-meeting-cost\" role=\"alert\" (click)=\"onMeetingClick()\">\n      Meeting cost is <strong>{{currentMeetingCost}} {{meeting.currency.key}}</strong>\n      <p [hidden]=true>\n        <small>{{meeting.id}}</small>\n      </p>\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], MeetingStatusComponent);

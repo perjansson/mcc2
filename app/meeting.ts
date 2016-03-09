@@ -1,40 +1,45 @@
+/// <reference path="../typings/agstopwatch/AGStopWatch.d.ts" />
+
 import {Guid} from './guid';
+import {Stopwatch} from './stopwatch';
 
 module MeetingStatus {
-    export const STARTED = "STARTED";
-    export const STOPPED = "STOPPED";
+    export const STARTED = 'STARTED';
+    export const STOPPED = 'STOPPED';
+}
+
+class Currency {
+  key: string;
+  name: string;
+
+  constructor(key: string, name: string) {
+    this.key = key;
+    this.name = name;
+  }
 }
 
 export class Meeting {
+  stopWatch: Stopwatch;
   id: string;
-  name: string;
   numberOfAttendees: number;
   averageHourlyRate: number;
-  currency: string = 'BTC';
-  status: string;
-  meetingStartTime: Date;
-  meetingStopTime: Date;
+  currency: Currency = new Currency('BTC', 'Bitcoin');
+  status: string = null;
   isGoodMeeting: boolean;
 
   constructor() {
-    this.reset();
+    this.stopWatch = new Stopwatch();
   }
 
   start() {
     this.status = MeetingStatus.STARTED;
+    this.id = Guid.newGuid();
+    this.stopWatch.start();
   }
 
   stop() {
     this.status = MeetingStatus.STOPPED;
-  }
-
-  reset() {
-    this.status = null;
-    this.id = Guid.newGuid();
-    this.name = null;
-    this.currency = 'BTC';
-    this.meetingStartTime = null;
-    this.meetingStopTime = null;
+    this.stopWatch.stop();
   }
 
   isNotStarted() {
@@ -50,12 +55,19 @@ export class Meeting {
   }
 
   getCost() {
-    // TODO
-    return 1337;
+    return Math.round(this.getExactMeetingCost()).toFixed(0);
   }
 
-  getCurrency() {
-    return 'SEK';
+  getExactMeetingCost() {
+    return this.getMeetingCostPerSecond() * this.getElapsedTimeInSeconds();
+  }
+
+  getMeetingCostPerSecond() {
+    return this.numberOfAttendees * (this.averageHourlyRate / 3600);
+  }
+
+  getElapsedTimeInSeconds() {
+    return this.stopWatch.elapsed / 1000;
   }
 
 }

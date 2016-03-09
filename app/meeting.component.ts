@@ -39,23 +39,23 @@ import {CurrencyService, Currency} from './currency.service';
     }
   `],
   template: `
-    <!--aside>
+    <aside [hidden]=true>
       <div class="alert alert-danger" role="alert"> <strong>Proceed with caution!</strong> Calculating meeting cost should probably only be done in a laid-back way and together with the right people.</div>
-    </aside-->
+    </aside>
     <article>
       <section>
       <form role="form" class="meeting-form">
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4">
-              <input id="numberOfAttendees" type="number" class="form-control input-xl" placeholder="Number of attendees">
+              <input id="numberOfAttendees" [(ngModel)]="meeting.numberOfAttendees" type="number" class="form-control input-xl" placeholder="Number of attendees">
             </div>
 
             <div class="form-group col-xs-12 col-sm-4">
-              <input id="averageHourlyRate" type="number" class="form-control input-xl" placeholder="Average hourly rate">
+              <input id="averageHourlyRate" [(ngModel)]="meeting.averageHourlyRate" type="number" class="form-control input-xl" placeholder="Average hourly rate">
             </div>
 
             <div class="form-group col-xs-12 col-sm-4">
-              <select id="currency" [(ngModel)]="meeting.currency" class="form-control input-xl" placeholder="Currency">
+              <select [ngModel]="meeting.currency.key" (change)="onCurrencyChange($event.target.value)" class="form-control input-xl" placeholder="Currency">
                 <option *ngFor="#currency of currencies" [value]="currency.key">{{currency.name}}</option>
               </select>
             </div>
@@ -72,15 +72,11 @@ import {CurrencyService, Currency} from './currency.service';
                   <i class="fa fa-stop"></i>
                 </button>
               </span>
-
-              <span id="resetButton" [hidden]="meeting.isNotStarted() || meeting.isStarted()" class="animated fadeIn">
-                <button class="btn btn-link" (click)="meeting.reset()" title="Reset">
-                  <i class="fa fa-minus-square"></i>
-                </button>
-              </span>
             </div>
           </div>
         </form>
+
+        <pre [hidden]=true>{{meeting.currency | json}}</pre>
 
         <div class="row meeting-cost animated fadeIn" [hidden]="meeting.isNotStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
@@ -103,6 +99,15 @@ export class MeetingComponent implements OnInit {
   ngOnInit() {
     this.meeting = new Meeting();
     this.getCurrencies();
+  }
+
+  onCurrencyChange(newCurrencyKey: string) {
+    this.meeting.currency = null;
+      for (var i = 0; i < this.currencies.length; i++) {
+        if (this.currencies[i].key == newCurrencyKey) {
+          this.meeting.currency = new Currency(this.currencies[i].key, this.currencies[i].name);
+        }
+      }
   }
 
   getCurrencies() {
