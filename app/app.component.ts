@@ -17,6 +17,9 @@ import {CurrencyService} from './currency.service';
     nav button {
       margin: 0px 3px;
     }
+    .nav button:focus {
+      outline:0;
+    }
     nav button.router-link-active {
       background-color: #286090;
       border-color: #204d74;

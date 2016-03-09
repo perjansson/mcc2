@@ -21,6 +21,9 @@ import {CurrencyService, Currency} from './currency.service';
     .meeting-control {
       margin-top: 5px;
     }
+    .meeting-control button:focus {
+      outline:0;
+    }
     .meeting-control .fa {
       font-size: 5em;
     }
@@ -54,7 +57,7 @@ import {CurrencyService, Currency} from './currency.service';
           font-size: 22px;
       }
       .meeting-control {
-        margin-top: 20px;
+        margin-top: 15px;
       }
       .meeting-control .fa {
         font-size: 7em;
@@ -98,8 +101,8 @@ import {CurrencyService, Currency} from './currency.service';
               </select>
             </div>
 
-            <div [hidden]="!meeting.numberOfAttendees || !meeting.averageHourlyRate || !meeting.currency" class="form-group col-xs-12 meeting-control text-center">
-              <span id="startButton" [hidden]="meeting.isStarted()" class="animated fadeIn">
+            <div [hidden]="!meeting.numberOfAttendees || !meeting.averageHourlyRate || !meeting.currency" class="form-group col-xs-12 meeting-control text-center animated tada">
+              <span id="startButton" [hidden]="meeting.isStarted()">
                 <button class="btn btn-link" (click)="meeting.start()" title="Start">
                   <i class="fa fa-play"></i>
                 </button>
@@ -116,7 +119,7 @@ import {CurrencyService, Currency} from './currency.service';
 
         <pre [hidden]=true>{{meetingForm.valid | json}}</pre>
 
-        <div class="row meeting-cost animated fadeIn" [hidden]="meeting.isNotStarted()">
+        <div class="row meeting-cost animated bounceInUp" [hidden]="meeting.isNotStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <meeting-status [meeting]=meeting></meeting-status>
           </div>

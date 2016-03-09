@@ -23,8 +23,8 @@ import {Meeting} from './meeting';
     @media only screen and (min-width : 480px) {
      .alert-meeting-cost {
         font-size: 36px;
-        margin-top: 25px;
-        margin-bottom: 50px;
+        margin-top: 15px;
+        margin-bottom: 30px;
       }
     }
   `],
