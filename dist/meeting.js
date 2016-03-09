@@ -1,20 +1,24 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Meeting;
+    var MeetingStatus, Meeting;
     return {
         setters:[],
         execute: function() {
+            (function (MeetingStatus) {
+                MeetingStatus.STARTED = "STARTED";
+                MeetingStatus.STOPPED = "STOPPED";
+            })(MeetingStatus || (MeetingStatus = {}));
             Meeting = (function () {
                 function Meeting() {
                     this.currency = 'BTC';
                     this.reset();
                 }
                 Meeting.prototype.start = function () {
-                    this.status = 'started';
+                    this.status = MeetingStatus.STARTED;
                 };
                 Meeting.prototype.stop = function () {
-                    this.status = 'stopped';
+                    this.status = MeetingStatus.STOPPED;
                 };
                 Meeting.prototype.reset = function () {
                     this.status = null;
@@ -31,10 +35,10 @@ System.register([], function(exports_1, context_1) {
                     return this.status === null;
                 };
                 Meeting.prototype.isStarted = function () {
-                    return this.status === 'started';
+                    return this.status === MeetingStatus.STARTED;
                 };
                 Meeting.prototype.isStopped = function () {
-                    return this.status === 'stopped';
+                    return this.status === MeetingStatus.STOPPED;
                 };
                 Meeting.prototype.getCost = function () {
                     // TODO

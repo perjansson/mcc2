@@ -1,3 +1,8 @@
+module MeetingStatus {
+    export const STARTED = "STARTED";
+    export const STOPPED = "STOPPED";
+}
+
 export class Meeting {
   id: string;
   name: string;
@@ -14,11 +19,11 @@ export class Meeting {
   }
 
   start() {
-    this.status = 'started';
+    this.status = MeetingStatus.STARTED;
   }
 
   stop() {
-    this.status = 'stopped';
+    this.status = MeetingStatus.STOPPED;
   }
 
   reset() {
@@ -39,11 +44,11 @@ export class Meeting {
   }
 
   isStarted() {
-    return this.status === 'started';
+    return this.status === MeetingStatus.STARTED;
   }
 
   isStopped() {
-    return this.status === 'stopped';
+    return this.status === MeetingStatus.STOPPED;
   }
 
   getCost() {
