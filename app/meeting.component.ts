@@ -151,7 +151,7 @@ export class MeetingComponent implements OnInit {
   getCurrencies() {
     this._currencyService.getCurrencies()
       .subscribe(
-        currencies => this.currencies = currencies
+        currencies => this.currencies = currencies.sort((c1, c2): number => c1.name < c2.name ? -1 : 1)
     );
   }
 

@@ -49,7 +49,7 @@ System.register(['angular2/core', 'angular2/common', './meeting', './meeting-sta
                 MeetingComponent.prototype.getCurrencies = function () {
                     var _this = this;
                     this._currencyService.getCurrencies()
-                        .subscribe(function (currencies) { return _this.currencies = currencies; });
+                        .subscribe(function (currencies) { return _this.currencies = currencies.sort(function (c1, c2) { return c1.name < c2.name ? -1 : 1; }); });
                 };
                 MeetingComponent = __decorate([
                     core_1.Component({
