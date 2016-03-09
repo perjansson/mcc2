@@ -14,7 +14,7 @@ import {CurrencyService, Currency} from './currency.service';
       font-size: 16px;
       margin-bottom: 25px;
     }
-   .meeting-cost .alert {
+    .meeting-cost .alert {
       font-size: 24px;
       margin-top: 25px;
     }
@@ -23,6 +23,12 @@ import {CurrencyService, Currency} from './currency.service';
     }
     .meeting-control .fa {
       font-size: 5em;
+    }
+    .meeting-control .fa-play {
+      color: #5cb85c;
+    }
+    .meeting-control .fa-stop {
+      color: #d9534f;
     }
     select.mcc-input {
       height: 45px;
@@ -44,7 +50,7 @@ import {CurrencyService, Currency} from './currency.service';
       }
       .mcc-input {
           height: 60px;
-          padding: 12px 18px;
+          padding: 12px 24px;
           font-size: 22px;
       }
       .meeting-control {
