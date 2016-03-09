@@ -1,3 +1,5 @@
+import {Guid} from './guid';
+
 module MeetingStatus {
     export const STARTED = "STARTED";
     export const STOPPED = "STOPPED";
@@ -28,15 +30,11 @@ export class Meeting {
 
   reset() {
     this.status = null;
-    this.id = this.generateId();
+    this.id = Guid.newGuid();
     this.name = null;
     this.currency = 'BTC';
     this.meetingStartTime = null;
     this.meetingStopTime = null;
-  }
-
-  generateId() {
-    return 'fakeId';
   }
 
   isNotStarted() {

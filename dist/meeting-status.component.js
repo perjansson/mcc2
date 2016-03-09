@@ -24,6 +24,9 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
             MeetingStatusComponent = (function () {
                 function MeetingStatusComponent() {
                 }
+                MeetingStatusComponent.prototype.onMeetingClick = function () {
+                    alert('Detail page for a meeting is not implemented yet...');
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', meeting_1.Meeting)
@@ -31,8 +34,8 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
                 MeetingStatusComponent = __decorate([
                     core_1.Component({
                         selector: 'meeting-status',
-                        styles: ["\n   .alert-meeting-cost {\n      font-size: 24px;\n      margin-top: 25px;\n    }\n  "],
-                        template: "\n    <div class=\"alert alert-info alert-meeting-cost\" role=\"alert\"> Meeting cost is <strong>{{meeting.getCost()}} {{meeting.getCurrency()}}</strong></div>\n  "
+                        styles: ["\n   .alert-meeting-cost {\n      font-size: 24px;\n      margin-top: 25px;\n      border-radius: 20px;\n      cursor: pointer;\n    }\n   .alert-meeting-cost:hover {\n      -moz-box-shadow: 0 0 75px #7EC6DE;\n      -webkit-box-shadow: 0 0 75px #7EC6DE;\n      box-shadow: 0px 0px 75px #7EC6DE;\n    }\n   .alert-meeting-cost small {\n      font-size: 14px;\n      color: lightgray;\n    }\n  "],
+                        template: "\n    <div class=\"alert alert-info alert-meeting-cost\" role=\"alert\" (click)=\"onMeetingClick()\">\n      Meeting cost is <strong>{{meeting.getCost()}} {{meeting.getCurrency()}}</strong>\n      <p>\n        <small>{{meeting.id}}</small>\n      </p>\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], MeetingStatusComponent);

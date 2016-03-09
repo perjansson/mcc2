@@ -26,7 +26,7 @@ import {CurrencyService} from './currency.service';
       height: 0;
       border-top: 1px solid rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      margin: 75px 0;
+      margin: 50px 0;
     }
   `],
   template: `

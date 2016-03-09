@@ -1,9 +1,13 @@
-System.register([], function(exports_1, context_1) {
+System.register(['./guid'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
+    var guid_1;
     var MeetingStatus, Meeting;
     return {
-        setters:[],
+        setters:[
+            function (guid_1_1) {
+                guid_1 = guid_1_1;
+            }],
         execute: function() {
             (function (MeetingStatus) {
                 MeetingStatus.STARTED = "STARTED";
@@ -22,14 +26,11 @@ System.register([], function(exports_1, context_1) {
                 };
                 Meeting.prototype.reset = function () {
                     this.status = null;
-                    this.id = this.generateId();
+                    this.id = guid_1.Guid.newGuid();
                     this.name = null;
                     this.currency = 'BTC';
                     this.meetingStartTime = null;
                     this.meetingStopTime = null;
-                };
-                Meeting.prototype.generateId = function () {
-                    return 'fakeId';
                 };
                 Meeting.prototype.isNotStarted = function () {
                     return this.status === null;
