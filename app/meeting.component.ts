@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgForm} from 'angular2/common';
 import {Meeting} from './meeting';
 import {MeetingStatusComponent} from './meeting-status.component';
 import {CurrencyService, Currency} from './currency.service';
@@ -67,23 +67,38 @@ import {CurrencyService, Currency} from './currency.service';
     </aside>
     <article>
       <section>
-      <form role="form" class="meeting-form">
+      <form role="form" class="meeting-form" #meetingForm="ngForm">
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4">
-              <input id="numberOfAttendees" [(ngModel)]="meeting.numberOfAttendees" type="number" class="form-control mcc-input" placeholder="Number of attendees">
+              <input id="numberOfAttendees"
+                [(ngModel)]="meeting.numberOfAttendees"
+                type="number"
+                required
+                class="form-control mcc-input"
+                placeholder="Number of attendees">
             </div>
 
             <div class="form-group col-xs-12 col-sm-4">
-              <input id="averageHourlyRate" [(ngModel)]="meeting.averageHourlyRate" type="number" class="form-control mcc-input" placeholder="Average hourly rate">
+              <input id="averageHourlyRate"
+                [(ngModel)]="meeting.averageHourlyRate"
+                type="number"
+                required
+                class="form-control mcc-input"
+                placeholder="Average hourly rate">
             </div>
 
             <div class="form-group col-xs-12 col-sm-4">
-              <select [ngModel]="meeting.currency.key" (change)="onCurrencyChange($event.target.value)" class="form-control mcc-input" placeholder="Currency">
+              <select id="currency"
+                [ngModel]="meeting.currency.key"
+                (change)="onCurrencyChange($event.target.value)"
+                required
+                class="form-control mcc-input"
+                placeholder="Currency">
                 <option *ngFor="#currency of currencies" [value]="currency.key">{{currency.name}}</option>
               </select>
             </div>
 
-            <div class="form-group col-xs-12 meeting-control text-center">
+            <div [hidden]="!meeting.numberOfAttendees || !meeting.averageHourlyRate || !meeting.currency" class="form-group col-xs-12 meeting-control text-center">
               <span id="startButton" [hidden]="meeting.isStarted()" class="animated fadeIn">
                 <button class="btn btn-link" (click)="meeting.start()" title="Start">
                   <i class="fa fa-play"></i>
@@ -99,7 +114,7 @@ import {CurrencyService, Currency} from './currency.service';
           </div>
         </form>
 
-        <pre [hidden]=true>{{meeting.currency | json}}</pre>
+        <pre [hidden]=true>{{meetingForm.valid | json}}</pre>
 
         <div class="row meeting-cost animated fadeIn" [hidden]="meeting.isNotStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
