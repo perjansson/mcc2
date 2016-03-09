@@ -51,20 +51,23 @@
       background-color: #FAF3DC;
     }
     h1 {
-      font-size: 80px;
+      font-size: 50px;
       color: #F74848;
-      margin-top: 40px;
-      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-bottom: 0;
     }
     h1 strong {
-      font-size: 100px;
+      font-size: 50px;
     }
-    .btn-xl {
-      font-size: 26px;
-      padding: 13px 20px;
-      border-radius: 8px;
-      margin-left: auto;
-      margin-right: auto;
+    @media only screen and (min-width : 480px) {
+      h1 {
+        font-size: 80px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+      h1 strong {
+        font-size: 100px;
+      }
     }
   </style>
 </head>

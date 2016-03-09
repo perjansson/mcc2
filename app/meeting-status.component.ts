@@ -5,8 +5,9 @@ import {Meeting} from './meeting';
   selector: 'meeting-status',
   styles: [`
    .alert-meeting-cost {
-      font-size: 36px;
-      margin-top: 25px;
+      font-size: 24px;
+      margin-top: 5px;
+      margin-bottom: 20px;
       border-radius: 20px;
       cursor: pointer;
     }
@@ -18,6 +19,13 @@ import {Meeting} from './meeting';
    .alert-meeting-cost small {
       font-size: 14px;
       color: lightgray;
+    }
+    @media only screen and (min-width : 480px) {
+     .alert-meeting-cost {
+        font-size: 36px;
+        margin-top: 25px;
+        margin-bottom: 50px;
+      }
     }
   `],
   template: `

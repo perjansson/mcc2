@@ -18,24 +18,41 @@ import {CurrencyService, Currency} from './currency.service';
       font-size: 24px;
       margin-top: 25px;
     }
-    select.input-xl {
-      height: 60px;
-      line-height: 35px;
+    .meeting-control {
+      margin-top: 5px;
+    }
+    .meeting-control .fa {
+      font-size: 5em;
+    }
+    select.mcc-input {
+      height: 45px;
+      line-height: 25px;
       -webkit-appearance: none;
       -webkit-border-radius: 30px;
     }
-    .input-xl {
-        height: 60px;
-        padding: 12px 18px;
-        font-size: 22px;
+    .mcc-input {
+        height: 45px;
+        padding: 8px 18px;
+        font-size: 16px;
         line-height: 1.5;
         border-radius: 30px;
     }
-    .meeting-control {
-      margin-top: 20px;
-    }
-    .meeting-control .fa {
-      font-size: 6em;
+    @media only screen and (min-width : 480px) {
+      select.mcc-input {
+        height: 60px;
+        line-height: 35px;
+      }
+      .mcc-input {
+          height: 60px;
+          padding: 12px 18px;
+          font-size: 22px;
+      }
+      .meeting-control {
+        margin-top: 20px;
+      }
+      .meeting-control .fa {
+        font-size: 7em;
+      }
     }
   `],
   template: `
@@ -47,15 +64,15 @@ import {CurrencyService, Currency} from './currency.service';
       <form role="form" class="meeting-form">
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4">
-              <input id="numberOfAttendees" [(ngModel)]="meeting.numberOfAttendees" type="number" class="form-control input-xl" placeholder="Number of attendees">
+              <input id="numberOfAttendees" [(ngModel)]="meeting.numberOfAttendees" type="number" class="form-control mcc-input" placeholder="Number of attendees">
             </div>
 
             <div class="form-group col-xs-12 col-sm-4">
-              <input id="averageHourlyRate" [(ngModel)]="meeting.averageHourlyRate" type="number" class="form-control input-xl" placeholder="Average hourly rate">
+              <input id="averageHourlyRate" [(ngModel)]="meeting.averageHourlyRate" type="number" class="form-control mcc-input" placeholder="Average hourly rate">
             </div>
 
             <div class="form-group col-xs-12 col-sm-4">
-              <select [ngModel]="meeting.currency.key" (change)="onCurrencyChange($event.target.value)" class="form-control input-xl" placeholder="Currency">
+              <select [ngModel]="meeting.currency.key" (change)="onCurrencyChange($event.target.value)" class="form-control mcc-input" placeholder="Currency">
                 <option *ngFor="#currency of currencies" [value]="currency.key">{{currency.name}}</option>
               </select>
             </div>

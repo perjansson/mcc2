@@ -9,33 +9,58 @@ import {CurrencyService} from './currency.service';
   selector: 'mcc-app',
   styles: [`
     nav {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
     nav > .row {
       margin-top: 30px;
     }
     nav button {
-      margin: 0px 5px;
+      margin: 0px 3px;
     }
     nav button.router-link-active {
       background-color: #286090;
       border-color: #204d74;
+    }
+    .btn-mcc {
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-left: auto;
+      margin-right: auto;
     }
     hr {
       border: 0;
       height: 0;
       border-top: 1px solid rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      margin: 50px 0;
+      margin: 20px 0;
+    }
+    @media only screen and (min-width : 480px) {
+      nav {
+        margin-bottom: 40px;
+      }
+      nav button {
+        margin: 0px 5px;
+      }
+      .btn-mcc {
+        font-size: 26px;
+        padding: 13px 20px;
+        border-radius: 8px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      hr {
+        margin: 50px 0;
+      }
     }
   `],
   template: `
     <nav class="row animated fadeIn">
       <div class="row">
         <div class="col-xs-12 text-center">
-          <button class="btn btn-primary btn-xl" [class.active]="getLinkStyle('#/meeting')" [routerLink]="['Meeting']"><i class="fa fa-clock-o"></i> Meeting</button>
-          <button class="btn btn-primary btn-xl disabled" [class.active]="getLinkStyle('#/toplist')"><i class="fa fa-list"></i> Top list</button>
-          <button class="btn btn-primary btn-xl disabled" [class.active]="getLinkStyle('#/about')"><i class="fa fa-users"></i> About</button>
+          <button class="btn btn-primary btn-mcc" [class.active]="getLinkStyle('#/meeting')" [routerLink]="['Meeting']"><i class="fa fa-clock-o"></i> Meeting</button>
+          <button class="btn btn-primary btn-mcc disabled" [class.active]="getLinkStyle('#/toplist')"><i class="fa fa-list"></i> Top list</button>
+          <button class="btn btn-primary btn-mcc disabled" [class.active]="getLinkStyle('#/about')"><i class="fa fa-users"></i> About</button>
         </div>
       </div>
     </nav>
