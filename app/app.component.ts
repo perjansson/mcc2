@@ -3,6 +3,7 @@ import {provide, Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Location, LocationStrategy, HashLocationStrategy, PathLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {MeetingComponent} from './meeting/meeting.component';
+import {MeetingDetailComponent} from './meeting/meeting-detail.component';
 import {MeetingService} from './meeting/meeting.service';
 import {CurrencyService} from './currency/currency.service';
 
@@ -82,7 +83,8 @@ import {CurrencyService} from './currency/currency.service';
 })
 
 @RouteConfig([
-  { path: '/meeting', name: 'Meeting', component: MeetingComponent, useAsDefault: true }
+  { path: '/meetings', name: 'Meeting', component: MeetingComponent, useAsDefault: true },
+  { path: '/meetings/:id', name: 'MeetingDetail', component: MeetingDetailComponent }
 ])
 
 export class AppComponent {

@@ -23,12 +23,22 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
         execute: function() {
             MeetingService = (function () {
                 function MeetingService() {
-                    this.meeting = new meeting_1.Meeting();
+                    this.meetings = new Array();
                 }
-                MeetingService.prototype.getMeeting = function () {
+                MeetingService.prototype.getOrCreateMeeting = function () {
+                    if (!this.meeting) {
+                        this.meeting = new meeting_1.Meeting();
+                        this.addMeeting(this.meeting);
+                    }
                     return this.meeting;
                 };
-                ;
+                MeetingService.prototype.findMeetingById = function (id) {
+                    return Promise.resolve(this.meetings)
+                        .then(function (meetings) { return meetings.filter(function (meeting) { return meeting.id === id; })[0]; });
+                };
+                MeetingService.prototype.addMeeting = function (meeting) {
+                    this.meetings.push(meeting);
+                };
                 MeetingService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])

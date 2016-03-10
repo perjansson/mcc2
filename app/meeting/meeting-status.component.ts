@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, EventEmitter, Input, Output, OnInit} from 'angular2/core';
 import {Meeting} from './meeting';
 
 @Component({
@@ -9,12 +9,6 @@ import {Meeting} from './meeting';
       margin-top: 5px;
       margin-bottom: 20px;
       border-radius: 20px;
-      cursor: pointer;
-    }
-   .alert-meeting-cost:hover {
-      -moz-box-shadow: 0 0 150px darkgray;
-      -webkit-box-shadow: 0 0 150px darkgray;
-      box-shadow: 0px 0px 150px darkgray;
     }
    .alert-meeting-cost small {
       font-size: 14px;
@@ -41,13 +35,15 @@ import {Meeting} from './meeting';
 export class MeetingStatusComponent implements OnInit {
 
   @Input() meeting: Meeting;
-  currentMeetingCost: String;
+  @Output() selected = new EventEmitter<Meeting>();
+
+  private currentMeetingCost: String;
   private interval: any;
 
   constructor() { }
 
   onMeetingClick() {
-    alert('Detail page for a meeting is not implemented yet...');
+    this.selected.emit(this.meeting);
   }
 
   ngOnInit() {

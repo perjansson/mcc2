@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router', 'angular2/http', './meeting/meeting.component', './meeting/meeting.service', './currency/currency.service'], function(exports_1, context_1) {
+System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router', 'angular2/http', './meeting/meeting.component', './meeting/meeting-detail.component', './meeting/meeting.service', './currency/currency.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var browser_1, core_1, router_1, http_1, meeting_component_1, meeting_service_1, currency_service_1;
+    var browser_1, core_1, router_1, http_1, meeting_component_1, meeting_detail_component_1, meeting_service_1, currency_service_1;
     var AppComponent;
     return {
         setters:[
@@ -28,6 +28,9 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
             },
             function (meeting_component_1_1) {
                 meeting_component_1 = meeting_component_1_1;
+            },
+            function (meeting_detail_component_1_1) {
+                meeting_detail_component_1 = meeting_detail_component_1_1;
             },
             function (meeting_service_1_1) {
                 meeting_service_1 = meeting_service_1_1;
@@ -52,7 +55,8 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
                         providers: [router_1.Location, http_1.HTTP_PROVIDERS, meeting_service_1.MeetingService, currency_service_1.CurrencyService]
                     }),
                     router_1.RouteConfig([
-                        { path: '/meeting', name: 'Meeting', component: meeting_component_1.MeetingComponent, useAsDefault: true }
+                        { path: '/meetings', name: 'Meeting', component: meeting_component_1.MeetingComponent, useAsDefault: true },
+                        { path: '/meetings/:id', name: 'MeetingDetail', component: meeting_detail_component_1.MeetingDetailComponent }
                     ]), 
                     __metadata('design:paramtypes', [router_1.Location])
                 ], AppComponent);

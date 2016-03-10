@@ -23,9 +23,10 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
         execute: function() {
             MeetingStatusComponent = (function () {
                 function MeetingStatusComponent() {
+                    this.selected = new core_1.EventEmitter();
                 }
                 MeetingStatusComponent.prototype.onMeetingClick = function () {
-                    alert('Detail page for a meeting is not implemented yet...');
+                    this.selected.emit(this.meeting);
                 };
                 MeetingStatusComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -35,10 +36,14 @@ System.register(['angular2/core', './meeting'], function(exports_1, context_1) {
                     core_1.Input(), 
                     __metadata('design:type', meeting_1.Meeting)
                 ], MeetingStatusComponent.prototype, "meeting", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], MeetingStatusComponent.prototype, "selected", void 0);
                 MeetingStatusComponent = __decorate([
                     core_1.Component({
                         selector: 'meeting-status',
-                        styles: ["\n   .alert-meeting-cost {\n      font-size: 24px;\n      margin-top: 5px;\n      margin-bottom: 20px;\n      border-radius: 20px;\n      cursor: pointer;\n    }\n   .alert-meeting-cost:hover {\n      -moz-box-shadow: 0 0 150px darkgray;\n      -webkit-box-shadow: 0 0 150px darkgray;\n      box-shadow: 0px 0px 150px darkgray;\n    }\n   .alert-meeting-cost small {\n      font-size: 14px;\n      color: lightgray;\n    }\n    @media only screen and (min-width : 480px) {\n     .alert-meeting-cost {\n        font-size: 36px;\n        margin-top: 15px;\n        margin-bottom: 30px;\n      }\n    }\n  "],
+                        styles: ["\n   .alert-meeting-cost {\n      font-size: 24px;\n      margin-top: 5px;\n      margin-bottom: 20px;\n      border-radius: 20px;\n    }\n   .alert-meeting-cost small {\n      font-size: 14px;\n      color: lightgray;\n    }\n    @media only screen and (min-width : 480px) {\n     .alert-meeting-cost {\n        font-size: 36px;\n        margin-top: 15px;\n        margin-bottom: 30px;\n      }\n    }\n  "],
                         template: "\n    <div class=\"alert alert-danger alert-meeting-cost\" role=\"alert\" (click)=\"onMeetingClick()\">\n      Meeting cost is <strong>{{currentMeetingCost}} {{meeting.currency.key}}</strong>\n      <p [hidden]=true>\n        <small>{{meeting.id}}</small>\n      </p>\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])

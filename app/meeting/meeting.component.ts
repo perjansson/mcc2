@@ -1,10 +1,11 @@
 import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgForm} from 'angular2/common';
+import {Router} from 'angular2/router';
 import {Meeting} from './meeting';
-import {MeetingStatusComponent} from './meeting-status.component';
 import {MeetingService} from './meeting.service';
 import {CurrencyService} from '../currency/currency.service';
 import {Currency} from '../currency/currency';
+import {MeetingStatusComponent} from './meeting-status.component';
 
 @Component({
   selector: 'meeting',
@@ -16,9 +17,8 @@ import {Currency} from '../currency/currency';
       font-size: 16px;
       margin-bottom: 25px;
     }
-    .meeting-cost .alert {
-      font-size: 24px;
-      margin-top: 25px;
+    .meeting-cost {
+      cursor: pointer;
     }
     .meeting-control {
       margin-top: 5px;
@@ -123,10 +123,10 @@ import {Currency} from '../currency/currency';
 
         <div class="row meeting-cost animated bounceInUp" [hidden]="meeting.isNotStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            <meeting-status [meeting]=meeting></meeting-status>
+            <meeting-status [meeting]=meeting (selected)=onMeetingSelected($event)></meeting-status>
           </div>
         </div>
-        </section>
+      </section>
     </article>
   `,
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent]
@@ -136,11 +136,15 @@ export class MeetingComponent implements OnInit {
   private meeting: Meeting;
   private currencies: Currency[];
 
-  constructor(private meetingService: MeetingService, private currencyService: CurrencyService) { }
+  constructor(private meetingService: MeetingService, private currencyService: CurrencyService, private router: Router) { }
 
   ngOnInit() {
-    this.meeting = this.meetingService.getMeeting();
+    this.meeting = this.meetingService.getOrCreateMeeting();
     this.getCurrencies();
+  }
+
+  onMeetingSelected() {
+    this.router.navigate(['MeetingDetail', { id: this.meeting.id }]);
   }
 
   onCurrencyChange(newCurrencyKey: string) {
