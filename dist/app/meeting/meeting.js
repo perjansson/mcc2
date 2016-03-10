@@ -1,32 +1,30 @@
 /// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
-System.register(['../../node_modules/agstopwatch/agstopwatch'], function(exports_1, context_1) {
+System.register(['../currency/currency', './guid', '../../node_modules/agstopwatch/agstopwatch'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var agstopwatch_1;
-    var Currency, Meeting, Guid;
+    var currency_1, guid_1, agstopwatch_1;
+    var Meeting;
     return {
         setters:[
+            function (currency_1_1) {
+                currency_1 = currency_1_1;
+            },
+            function (guid_1_1) {
+                guid_1 = guid_1_1;
+            },
             function (agstopwatch_1_1) {
                 agstopwatch_1 = agstopwatch_1_1;
             }],
         execute: function() {
-            ;
-            Currency = (function () {
-                function Currency(key, name) {
-                    this.key = key;
-                    this.name = name;
-                }
-                return Currency;
-            }());
             Meeting = (function () {
                 function Meeting() {
-                    this.currency = new Currency('BTC', 'Bitcoin');
+                    this.currency = new currency_1.Currency('BTC', 'Bitcoin');
                     this.status = null;
                     this.stopWatch = new agstopwatch_1.AGStopwatch();
                 }
                 Meeting.prototype.start = function () {
                     this.status = 0 /* Started */;
-                    this.id = Guid.newGuid();
+                    this.id = guid_1.Guid.newGuid();
                     this.stopWatch.start();
                 };
                 Meeting.prototype.stop = function () {
@@ -57,17 +55,6 @@ System.register(['../../node_modules/agstopwatch/agstopwatch'], function(exports
                 return Meeting;
             }());
             exports_1("Meeting", Meeting);
-            Guid = (function () {
-                function Guid() {
-                }
-                Guid.newGuid = function () {
-                    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                        return v.toString(16);
-                    });
-                };
-                return Guid;
-            }());
         }
     }
 });

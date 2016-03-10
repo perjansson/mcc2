@@ -2,7 +2,9 @@ import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgForm} from 'angular2/common';
 import {Meeting} from './meeting';
 import {MeetingStatusComponent} from './meeting-status.component';
-import {CurrencyService, Currency} from '../currency/currency.service';
+import {MeetingService} from './meeting.service';
+import {CurrencyService} from '../currency/currency.service';
+import {Currency} from '../currency/currency';
 
 @Component({
   selector: 'meeting',
@@ -129,16 +131,15 @@ import {CurrencyService, Currency} from '../currency/currency.service';
   `,
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent]
 })
-
 export class MeetingComponent implements OnInit {
 
   private meeting: Meeting;
   private currencies: Currency[];
 
-  constructor(private _currencyService: CurrencyService) { }
+  constructor(private meetingService: MeetingService, private currencyService: CurrencyService) { }
 
   ngOnInit() {
-    this.meeting = new Meeting();
+    this.meeting = this.meetingService.getMeeting();
     this.getCurrencies();
   }
 
@@ -152,7 +153,7 @@ export class MeetingComponent implements OnInit {
   }
 
   getCurrencies() {
-    this._currencyService.getCurrencies()
+    this.currencyService.getCurrencies()
       .subscribe(
         currencies => this.currencies = currencies.sort((c1, c2): number => c1.name < c2.name ? -1 : 1)
     );

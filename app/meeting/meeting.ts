@@ -1,18 +1,8 @@
 /// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
 
+import {Currency} from '../currency/currency';
+import {Guid} from './guid';
 import {AGStopwatch} from '../../node_modules/agstopwatch/agstopwatch';
-
-const enum MeetingStatus { Started, Stopped };
-
-class Currency {
-  key: string;
-  name: string;
-
-  constructor(key: string, name: string) {
-    this.key = key;
-    this.name = name;
-  }
-}
 
 export class Meeting {
   stopWatch: AGStopwatch;
@@ -66,13 +56,4 @@ export class Meeting {
     return this.stopWatch.elapsed / 1000;
   }
 
-}
-
-class Guid {
-    static newGuid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-            return v.toString(16);
-        });
-    }
 }

@@ -3,6 +3,7 @@ import {provide, Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Location, LocationStrategy, HashLocationStrategy, PathLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {MeetingComponent} from './meeting/meeting.component';
+import {MeetingService} from './meeting/meeting.service';
 import {CurrencyService} from './currency/currency.service';
 
 @Component({
@@ -77,7 +78,7 @@ import {CurrencyService} from './currency/currency.service';
     </main>
   `,
   directives: [ROUTER_DIRECTIVES],
-  providers: [Location, HTTP_PROVIDERS, CurrencyService]
+  providers: [Location, HTTP_PROVIDERS, MeetingService, CurrencyService]
 })
 
 @RouteConfig([

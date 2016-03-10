@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1, Rx_1;
-    var Currency, CurrencyService;
+    var CurrencyService;
     return {
         setters:[
             function (core_1_1) {
@@ -24,14 +24,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                 Rx_1 = Rx_1_1;
             }],
         execute: function() {
-            Currency = (function () {
-                function Currency(key, name) {
-                    this.key = key;
-                    this.name = name;
-                }
-                return Currency;
-            }());
-            exports_1("Currency", Currency);
             CurrencyService = (function () {
                 function CurrencyService(_http) {
                     this._http = _http;
