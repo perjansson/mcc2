@@ -29,8 +29,8 @@ import {Location} from '../common/location';
     .meeting-optional-info-control {
       font-size: 0.4em;
       margin-bottom: 0;
-      -webkit-animation-delay: 0s;
-      animation-delay: 0s;
+      -webkit-animation-delay: 3s;
+      animation-delay: 3s;
     }
     .meeting-optional-info-control .fa {
       font-size: 1.5em;
