@@ -1,5 +1,5 @@
 /// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
-System.register(['./guid', '../currency/currency', '../../node_modules/agstopwatch/agstopwatch'], function(exports_1, context_1) {
+System.register(['../common/guid', '../currency/currency', '../../node_modules/agstopwatch/agstopwatch'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var guid_1, currency_1, agstopwatch_1;

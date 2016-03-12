@@ -1,8 +1,8 @@
 /// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
 
-import {Guid} from './guid';
+import {Guid} from '../common/guid';
 import {Currency} from '../currency/currency';
-import {MeetingLocation} from './meeting-location';
+import {MeetingLocation} from '../common/meeting-location';
 import {AGStopwatch} from '../../node_modules/agstopwatch/agstopwatch';
 
 export class Meeting {

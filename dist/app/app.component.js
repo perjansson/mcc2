@@ -63,6 +63,7 @@ System.register(['angular2/platform/browser', 'angular2/core', 'angular2/router'
                 return AppComponent;
             }());
             exports_1("AppComponent", AppComponent);
+            core_1.enableProdMode();
             browser_1.bootstrap(AppComponent, [
                 router_1.ROUTER_PROVIDERS,
                 core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })

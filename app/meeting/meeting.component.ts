@@ -6,7 +6,9 @@ import {MeetingService} from './meeting.service';
 import {CurrencyService} from '../currency/currency.service';
 import {Currency} from '../currency/currency';
 import {MeetingStatusComponent} from './meeting-status.component';
-import {ToggleComponent} from './toggle.component';
+import {ToggleComponent} from '../common/toggle.component';
+import {LocationFinderComponent} from '../common/location-finder.component';
+import {Location} from '../common/location';
 
 @Component({
   selector: 'meeting',
@@ -172,9 +174,7 @@ import {ToggleComponent} from './toggle.component';
               <toggle (selected)=onGoodMeetingToggle($event)></toggle>
             </div>
             <div class="form-group col-xs-12 col-sm-4">
-              <button type="button" class="btn btn-warning btn-mcc" (click)="useLocation()" [disabled]=true>
-                <i class="fa fa-location-arrow"></i> Use location?
-              </button>
+              <location-finder buttonText="Use location?" (onLocationFound)=onMeetingLocationFound($event)></location-finder>
             </div>
           </div>
 
@@ -202,7 +202,7 @@ import {ToggleComponent} from './toggle.component';
       </section>
     </article>
   `,
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent, ToggleComponent]
+  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent, ToggleComponent, LocationFinderComponent]
 })
 export class MeetingComponent implements OnInit {
 
@@ -225,8 +225,8 @@ export class MeetingComponent implements OnInit {
     this.meeting.isGoodMeeting = toggleValue;
   }
 
-  useLocation() {
-
+  onMeetingLocationFound(location: Location) {
+    console.log('onMeetingLocationFound: ' + location);
   }
 
   onCurrencyChange(newCurrencyKey: string) {

@@ -24,12 +24,12 @@ import {Component, EventEmitter, Input, Output, OnInit} from 'angular2/core';
       width: 50px;
       height: 32px;
       background-color: white;
-              border-radius: 19px;
+      border-radius: 19px;
       -webkit-box-shadow: inset 0 0 0 1px #b8bfc8;
-         -moz-box-shadow: inset 0 0 0 1px #b8bfc8;
-              box-shadow: inset 0 0 0 1px #b8bfc8;
+      -moz-box-shadow: inset 0 0 0 1px #b8bfc8;
+      box-shadow: inset 0 0 0 1px #b8bfc8;
       -webkit-border-radius: 19px;
-         -moz-border-radius: 19px;
+      -moz-border-radius: 19px;
     }
     .toggle .handle:before, .toggle .handle:after {
       position: absolute;
