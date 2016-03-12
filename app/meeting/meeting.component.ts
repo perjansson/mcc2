@@ -29,8 +29,8 @@ import {Location} from '../common/location';
     .meeting-optional-info-control {
       font-size: 0.4em;
       margin-bottom: 0;
-      -webkit-animation-delay: 5s;
-      animation-delay: 5s;
+      -webkit-animation-delay: 0s;
+      animation-delay: 0s;
     }
     .meeting-optional-info-control .fa {
       font-size: 1.5em;
@@ -77,6 +77,12 @@ import {Location} from '../common/location';
       margin-top: 15px;
       margin-right: 10px;
     }
+    .good-meeting label {
+      margin-bottom: 5px;
+    }
+    .location-finder {
+      margin-top: 15px;
+    }
     .btn-mcc {
       font-size: 16px;
       padding: 8px 12px;
@@ -105,6 +111,12 @@ import {Location} from '../common/location';
       }
       label {
         font-size: 0.8em;
+      }
+      .good-meeting label {
+        margin-bottom: 0;
+      }
+      .location-finder {
+        margin-top: 0;
       }
       .btn-mcc {
         font-size: 26px;
@@ -169,11 +181,11 @@ import {Location} from '../common/location';
                 class="form-control mcc-input"
                 placeholder="Meeeting name">
             </div>
-            <div class="form-group col-xs-12 col-sm-4">
+            <div class="form-group col-xs-6 col-sm-4 good-meeting">
               <label>Good meeting?</label>
               <toggle (selected)=onGoodMeetingToggle($event)></toggle>
             </div>
-            <div class="form-group col-xs-12 col-sm-4">
+            <div class="form-group col-xs-6 col-sm-4 location-finder">
               <location-finder buttonText="Use location?" (onLocationFound)=onMeetingLocationFound($event)></location-finder>
             </div>
           </div>
