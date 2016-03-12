@@ -60,6 +60,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './meeti
                     this.meeting.isGoodMeeting = toggleValue;
                 };
                 MeetingComponent.prototype.onMeetingLocationFound = function (location) {
+                    this.meeting.location = location;
                     console.log('onMeetingLocationFound: ' + location);
                 };
                 MeetingComponent.prototype.onCurrencyChange = function (newCurrencyKey) {

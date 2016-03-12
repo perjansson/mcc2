@@ -226,6 +226,7 @@ export class MeetingComponent implements OnInit {
   }
 
   onMeetingLocationFound(location: Location) {
+    this.meeting.location = location;
     console.log('onMeetingLocationFound: ' + location);
   }
 

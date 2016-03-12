@@ -6,10 +6,14 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             Location = (function () {
-                function Location(longitude, latitude) {
+                function Location(longitude, latitude, city) {
                     this.longitude = longitude;
                     this.latitude = latitude;
+                    this.city = city;
                 }
+                Location.prototype.toString = function () {
+                    return 'longitude: ' + this.longitude + ' latitude: ' + this.latitude + ' city: ' + this.city;
+                };
                 return Location;
             }());
             exports_1("Location", Location);
