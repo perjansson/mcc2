@@ -11,6 +11,9 @@ import {ToggleComponent} from './toggle.component';
 @Component({
   selector: 'meeting',
   styles: [`
+    a {
+      cursor: pointer;
+    }
     .row {
       margin-bottom: 20px;
     }
@@ -21,13 +24,16 @@ import {ToggleComponent} from './toggle.component';
       font-size: 16px;
       margin-bottom: 25px;
     }
+    .meeting-optional-info-control {
+      font-size: 0.4em;
+      margin-bottom: 0;
+      -webkit-animation-delay: 5s;
+      animation-delay: 5s;
+    }
     .meeting-optional-info-control .fa {
       font-size: 1.5em;
       color: gray;
       display: block;
-    }
-    .meeting-optional-info-control {
-      font-size: 0.6em;
     }
     .meeting-optional-info .checkbox-lg {
       width: 30px; height: 30px;
@@ -86,11 +92,11 @@ import {ToggleComponent} from './toggle.component';
           padding: 12px 24px;
           font-size: 22px;
       }
+      .meeting-optional-info-control {
+        font-size: 0.7em;
+      }
       .meeting-optional-info-control .fa {
         font-size: 3em;
-      }
-      .meeting-optional-info-control {
-        font-size: 0.8em;
       }
       .meeting-control .fa {
         font-size: 7em;
@@ -149,26 +155,23 @@ import {ToggleComponent} from './toggle.component';
 
           <div class="row meeting-optional-info-control animated fadeIn" [hidden]="meeting.isNotStarted() || showOptionalInfo">
             <div class="col-xs-12 text-muted">
-              Maybe you would like to tell us a little bit more about the meeting?
-                <button type="button" class="btn btn-lg btn-link" (click)="showOptionalInfo=!showOptionalInfo">
-                  <i class="fa fa-thumbs-up"></i>
-                </button>
+              <a (click)="showOptionalInfo=!showOptionalInfo" class="pull-right">Got more info about the meeting?</a>
             </div>
           </div>
 
-          <div class="row meeting-optional-info animated bounceInRight" [hidden]="meeting.isNotStarted()">
-            <div class="form-group col-xs-12 col-sm-4" [hidden]="!showOptionalInfo">
+          <div class="row meeting-optional-info animated bounceInRight" [hidden]="meeting.isNotStarted() || !showOptionalInfo">
+            <div class="form-group col-xs-12 col-sm-4 animated">
               <input id="name"
                 [(ngModel)]="meeting.name"
                 type="text"
                 class="form-control mcc-input"
                 placeholder="Meeeting name">
             </div>
-            <div class="form-group col-xs-12 col-sm-4" [hidden]="!showOptionalInfo">
+            <div class="form-group col-xs-12 col-sm-4">
               <label>Good meeting?</label>
               <toggle (selected)=onGoodMeetingToggle($event)></toggle>
             </div>
-            <div class="form-group col-xs-12 col-sm-4" [hidden]="!showOptionalInfo">
+            <div class="form-group col-xs-12 col-sm-4">
               <button type="button" class="btn btn-warning btn-mcc" (click)="useLocation()" [disabled]=true>
                 <i class="fa fa-location-arrow"></i> Use location?
               </button>
