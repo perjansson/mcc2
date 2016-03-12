@@ -1,16 +1,20 @@
 /// <reference path="../../typings/agstopwatch/AGStopWatch.d.ts" />
 
-import {Currency} from '../currency/currency';
 import {Guid} from './guid';
+import {Currency} from '../currency/currency';
+import {MeetingLocation} from './meeting-location';
 import {AGStopwatch} from '../../node_modules/agstopwatch/agstopwatch';
 
 export class Meeting {
+
   stopWatch: AGStopwatch;
   id: string;
+  status: MeetingStatus = null;
   numberOfAttendees: number;
   averageHourlyRate: number;
   currency: Currency = new Currency('BTC', 'Bitcoin');
-  status: MeetingStatus = null;
+  name: string;
+  location: MeetingLocation;
   isGoodMeeting: boolean;
 
   constructor() {

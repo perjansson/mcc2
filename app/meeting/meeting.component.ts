@@ -6,10 +6,14 @@ import {MeetingService} from './meeting.service';
 import {CurrencyService} from '../currency/currency.service';
 import {Currency} from '../currency/currency';
 import {MeetingStatusComponent} from './meeting-status.component';
+import {ToggleComponent} from './toggle.component';
 
 @Component({
   selector: 'meeting',
   styles: [`
+    .row {
+      margin-bottom: 20px;
+    }
     .meeting-form .btn {
       margin-right: 5px;
     }
@@ -17,11 +21,22 @@ import {MeetingStatusComponent} from './meeting-status.component';
       font-size: 16px;
       margin-bottom: 25px;
     }
+    .meeting-optional-info-control .fa {
+      font-size: 1.5em;
+      color: gray;
+      display: block;
+    }
+    .meeting-optional-info-control {
+      font-size: 0.6em;
+    }
+    .meeting-optional-info .checkbox-lg {
+      width: 30px; height: 30px;
+    }
+    i:before:hover {
+    	text-decoration: none;
+    }
     .meeting-cost {
       cursor: pointer;
-    }
-    .meeting-control {
-      margin-top: 5px;
     }
     .meeting-control button:focus {
       outline:0;
@@ -42,11 +57,24 @@ import {MeetingStatusComponent} from './meeting-status.component';
       -webkit-border-radius: 30px;
     }
     .mcc-input {
-        height: 45px;
-        padding: 8px 18px;
-        font-size: 16px;
-        line-height: 1.5;
-        border-radius: 30px;
+      height: 45px;
+      padding: 8px 18px;
+      font-size: 16px;
+      line-height: 1.5;
+      border-radius: 30px;
+    }
+    label {
+      font-size: 0.5em;
+      font-weight: normal;
+      margin-top: 15px;
+      margin-right: 10px;
+    }
+    .btn-mcc {
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-left: auto;
+      margin-right: auto;
     }
     @media only screen and (min-width : 480px) {
       select.mcc-input {
@@ -58,11 +86,24 @@ import {MeetingStatusComponent} from './meeting-status.component';
           padding: 12px 24px;
           font-size: 22px;
       }
-      .meeting-control {
-        margin-top: 15px;
+      .meeting-optional-info-control .fa {
+        font-size: 3em;
+      }
+      .meeting-optional-info-control {
+        font-size: 0.8em;
       }
       .meeting-control .fa {
         font-size: 7em;
+      }
+      label {
+        font-size: 0.8em;
+      }
+      .btn-mcc {
+        font-size: 26px;
+        padding: 13px 20px;
+        border-radius: 8px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   `],
@@ -72,26 +113,28 @@ import {MeetingStatusComponent} from './meeting-status.component';
     </aside>
     <article>
       <section>
-      <form role="form" class="meeting-form" #meetingForm="ngForm">
-        <div class="row">
+        <form role="form" class="meeting-form" #meetingForm="ngForm">
+          <div class="row meeting-mandatory-info">
             <div class="form-group col-xs-12 col-sm-4">
               <input id="numberOfAttendees"
                 [(ngModel)]="meeting.numberOfAttendees"
                 type="number"
+                min=0
+                step="1"
                 required
                 class="form-control mcc-input"
                 placeholder="Number of attendees">
             </div>
-
             <div class="form-group col-xs-12 col-sm-4">
               <input id="averageHourlyRate"
                 [(ngModel)]="meeting.averageHourlyRate"
                 type="number"
+                min=0
+                step="10"
                 required
                 class="form-control mcc-input"
                 placeholder="Average hourly rate">
             </div>
-
             <div class="form-group col-xs-12 col-sm-4">
               <select id="currency"
                 [ngModel]="meeting.currency.key"
@@ -102,14 +145,43 @@ import {MeetingStatusComponent} from './meeting-status.component';
                 <option *ngFor="#currency of currencies" [value]="currency.key">{{currency.name}}</option>
               </select>
             </div>
+          </div>
 
-            <div [hidden]="!meeting.numberOfAttendees || !meeting.averageHourlyRate || !meeting.currency" class="form-group col-xs-12 meeting-control text-center animated tada">
+          <div class="row meeting-optional-info-control animated fadeIn" [hidden]="meeting.isNotStarted() || showOptionalInfo">
+            <div class="col-xs-12 text-muted">
+              Maybe you would like to tell us a little bit more about the meeting?
+                <button type="button" class="btn btn-lg btn-link" (click)="showOptionalInfo=!showOptionalInfo">
+                  <i class="fa fa-thumbs-up"></i>
+                </button>
+            </div>
+          </div>
+
+          <div class="row meeting-optional-info animated bounceInRight" [hidden]="meeting.isNotStarted()">
+            <div class="form-group col-xs-12 col-sm-4" [hidden]="!showOptionalInfo">
+              <input id="name"
+                [(ngModel)]="meeting.name"
+                type="text"
+                class="form-control mcc-input"
+                placeholder="Meeeting name">
+            </div>
+            <div class="form-group col-xs-12 col-sm-4" [hidden]="!showOptionalInfo">
+              <label>Good meeting?</label>
+              <toggle (selected)=onGoodMeetingToggle($event)></toggle>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4" [hidden]="!showOptionalInfo">
+              <button type="button" class="btn btn-warning btn-mcc" (click)="useLocation()" [disabled]=true>
+                <i class="fa fa-location-arrow"></i> Use location?
+              </button>
+            </div>
+          </div>
+
+          <div class="row meeting-control">
+            <div [hidden]="!meeting.numberOfAttendees || !meeting.averageHourlyRate || !meeting.currency" class="form-group col-xs-12 text-center animated tada">
               <span id="startButton" [hidden]="meeting.isStarted()">
                 <button class="btn btn-link" (click)="meeting.start()" title="Start">
                   <i class="fa fa-play"></i>
                 </button>
               </span>
-
               <span id="stopButton" [hidden]="meeting.isNotStarted() || meeting.isStopped()" class="animated fadeIn">
                 <button class="btn btn-link" (click)="meeting.stop()" title="Stop">
                   <i class="fa fa-stop"></i>
@@ -119,8 +191,6 @@ import {MeetingStatusComponent} from './meeting-status.component';
           </div>
         </form>
 
-        <pre [hidden]=true>{{meetingForm.valid | json}}</pre>
-
         <div class="row meeting-cost animated bounceInUp" [hidden]="meeting.isNotStarted()">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <meeting-status [meeting]=meeting (selected)=onMeetingSelected($event)></meeting-status>
@@ -129,12 +199,13 @@ import {MeetingStatusComponent} from './meeting-status.component';
       </section>
     </article>
   `,
-  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent]
+  directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, MeetingStatusComponent, ToggleComponent]
 })
 export class MeetingComponent implements OnInit {
 
   private meeting: Meeting;
   private currencies: Currency[];
+  private showOptionalInfo: boolean = false;
 
   constructor(private meetingService: MeetingService, private currencyService: CurrencyService, private router: Router) { }
 
@@ -145,6 +216,14 @@ export class MeetingComponent implements OnInit {
 
   onMeetingSelected() {
     this.router.navigate(['MeetingDetail', { id: this.meeting.id }]);
+  }
+
+  onGoodMeetingToggle(toggleValue: boolean) {
+    this.meeting.isGoodMeeting = toggleValue;
+  }
+
+  useLocation() {
+
   }
 
   onCurrencyChange(newCurrencyKey: string) {
