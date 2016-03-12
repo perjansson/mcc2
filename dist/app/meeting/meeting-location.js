@@ -10,20 +10,6 @@ System.register([], function(exports_1, context_1) {
                     this.longitude = longitude;
                     this.latitude = latitude;
                 }
-                Object.defineProperty(MeetingLocation.prototype, "longitude", {
-                    get: function () {
-                        return this.longitude;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(MeetingLocation.prototype, "latitude", {
-                    get: function () {
-                        return this.latitude;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
                 return MeetingLocation;
             }());
             exports_1("MeetingLocation", MeetingLocation);

@@ -15,7 +15,7 @@ import {ToggleComponent} from './toggle.component';
       cursor: pointer;
     }
     .row {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .meeting-form .btn {
       margin-right: 5px;
