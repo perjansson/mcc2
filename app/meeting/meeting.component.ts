@@ -166,7 +166,6 @@ import {Location} from '../common/location';
               </select>
             </div>
           </div>
-          
 
           <div class="row meeting-optional-info-control animated fadeIn" [hidden]="meeting.isNotStarted() || showOptionalInfo">
             <div class="col-xs-12 text-muted">
