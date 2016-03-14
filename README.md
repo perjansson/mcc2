@@ -2,4 +2,5 @@
 Meeting cost calculator implemented in Angular2 and Typescript - http://perjansson.github.io/mcc2
 
 ## To run it locally
-1. npm start (that's it)
+1. npm run build (with webpack)
+2. npm start
