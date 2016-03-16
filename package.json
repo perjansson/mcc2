@@ -30,6 +30,7 @@
   },
   "scripts": {
     "build": "webpack --progress --profile --colors --display-error-details --display-cached",
+    "build:production": "webpack -p --progress --profile --colors",
     "start": "webpack-dev-server --inline --progress --profile --colors --watch --display-error-details --display-cached"
   },
   "repository": {

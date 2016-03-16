@@ -32,6 +32,9 @@
     h1 strong {
       font-size: 50px;
     }
+    small {
+      font-size: 0.6em;
+    }
     @media only screen and (min-width : 480px) {
       h1 {
         font-size: 80px;
@@ -40,6 +43,9 @@
       }
       h1 strong {
         font-size: 100px;
+      }
+      .sub-header {
+        margin-top: -30px;
       }
     }
   </style>
@@ -53,6 +59,9 @@
   <div class="container text-center animated bounceInDown">
     <header>
       <h1>Meeting Cost Calculator <strong>2</strong></h1>
+        <div class="sub-header text-right">
+          <small>Build with <a href="https://angular.io" target="_blank">Angular 2</a> and <a href="http://www.typescriptlang.org/" target="_blank">TypeScript</a></small>
+        </div>
     </header>
     <mcc-app></mcc-app>
   </div>
