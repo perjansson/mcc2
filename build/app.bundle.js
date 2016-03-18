@@ -36975,8 +36975,7 @@
 	        console.error(error);
 	        return Rx_1.Observable.throw(error.json().error || 'Server error');
 	    };
-	    //static MEETINGS_API: string = 'https://mcc2-backend.herokuapp.com/';
-	    MeetingService.MEETINGS_API = 'http://localhost:5000/';
+	    MeetingService.MEETINGS_API = 'https://mcc2-backend.herokuapp.com/';
 	    MeetingService = __decorate([
 	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [http_1.Http])
