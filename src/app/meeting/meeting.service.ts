@@ -29,6 +29,11 @@ export class MeetingService {
       .catch(this.handleError);
   }
 
+  saveMeeting(meeting) {
+    console.log('saveMeeting', meeting);
+    return this._http.post(MeetingService.MEETINGS_API + 'meetings', meeting);
+  }
+
   getMeetingById(id: string) {
     return Promise.resolve(this.meetings)
       .then(meetings => meetings.filter(meeting => meeting.id === id)[0]);

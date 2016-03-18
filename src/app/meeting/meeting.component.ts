@@ -193,12 +193,12 @@ import {Location} from '../common/location';
           <div class="row meeting-control">
             <div [hidden]="!meeting.numberOfAttendees || !meeting.averageHourlyRate || !meeting.currency" class="form-group col-xs-12 text-center animated tada">
               <span id="startButton" [hidden]="meeting.isStarted()">
-                <button class="btn btn-link" (click)="meeting.start()" title="Start">
+                <button class="btn btn-link" (click)="startMeeting()" title="Start">
                   <i class="fa fa-play"></i>
                 </button>
               </span>
               <span id="stopButton" [hidden]="meeting.isNotStarted() || meeting.isStopped()" class="animated fadeIn">
-                <button class="btn btn-link" (click)="meeting.stop()" title="Stop">
+                <button class="btn btn-link" (click)="stopMeeting()" title="Stop">
                   <i class="fa fa-stop"></i>
                 </button>
               </span>
@@ -227,6 +227,16 @@ export class MeetingComponent implements OnInit {
   ngOnInit() {
     this.meeting = this.meetingService.getOrCreateMeeting();
     this.getCurrencies();
+  }
+
+  startMeeting() {
+    this.meeting.start();
+    this.meetingService.saveMeeting(this.meeting);
+  }
+
+  stopMeeting() {
+    this.meeting.stop();
+    this.meetingService.saveMeeting(this.meeting);
   }
 
   onMeetingSelected() {
