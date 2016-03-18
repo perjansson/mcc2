@@ -3,6 +3,7 @@ import {provide, Component, enableProdMode} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Location, LocationStrategy, HashLocationStrategy, PathLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {MeetingComponent} from './meeting/meeting.component';
+import {TopListComponent} from './meeting/toplist.component';
 import {MeetingDetailComponent} from './meeting/meeting-detail.component';
 import {MeetingService} from './meeting/meeting.service';
 import {CurrencyService} from './currency/currency.service';
@@ -64,7 +65,7 @@ import {CurrencyService} from './currency/currency.service';
       <div class="row">
         <div class="col-xs-12 text-center">
           <button class="btn btn-primary btn-mcc" [class.active]="getLinkStyle('#/meeting')" [routerLink]="['Meeting']"><i class="fa fa-clock-o"></i> Meeting</button>
-          <button class="btn btn-primary btn-mcc disabled" [class.active]="getLinkStyle('#/toplist')"><i class="fa fa-list"></i> Top list</button>
+          <button class="btn btn-primary btn-mcc" [class.active]="getLinkStyle('#/toplist')" [routerLink]="['TopList']"><i class="fa fa-list"></i> Top list</button>
           <button class="btn btn-primary btn-mcc disabled" [class.active]="getLinkStyle('#/about')"><i class="fa fa-users"></i> About</button>
         </div>
       </div>
@@ -83,7 +84,8 @@ import {CurrencyService} from './currency/currency.service';
 })
 
 @RouteConfig([
-  { path: '/meetings', name: 'Meeting', component: MeetingComponent, useAsDefault: true },
+  { path: '/meetings/new', name: 'Meeting', component: MeetingComponent, useAsDefault: true },
+  { path: '/meetings', name: 'TopList', component: TopListComponent },
   { path: '/meetings/:id', name: 'MeetingDetail', component: MeetingDetailComponent }
 ])
 

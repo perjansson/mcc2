@@ -31,7 +31,7 @@ export class MeetingDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = this.routeParams.get('id');
-    this.meetingService.findMeetingById(id)
+    this.meetingService.getMeetingById(id)
       .then(meeting => this.meeting = meeting);
   }
 
