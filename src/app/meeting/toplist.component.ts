@@ -6,6 +6,14 @@ import {MeetingService} from './meeting.service';
 @Component({
   selector: 'meeting',
   styles: [`
+    .loader {
+      animation-delay: 0.5s;
+      animation-duration: 5s;
+    }
+    .fa-spinner.fa-spin {
+      font-size: 7em;
+      color: #337ab7;
+    }
     .table {
       font-size: 0.8em;
     }
@@ -23,7 +31,10 @@ import {MeetingService} from './meeting.service';
     <article>
       <section>
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-12 loader animated fadeIn" [hidden]=meetings>
+            <i class="fa fa-spinner fa-spin"></i>
+          </div>
+          <div class="col-xs-12" [hidden]=!meetings>
             <table class="table table-striped table-hover">
               <tr>
                 <th width="10%"></th>
