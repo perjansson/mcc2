@@ -40,13 +40,13 @@ import {MeetingService} from './meeting.service';
                 <th width="10%"></th>
                 <th width="30%">Number of attendees</th>
                 <th width="30%">Average hourly rate</th>
-                <th width="30%">Currency</th>
+                <th width="30%">Cost</th>
               </tr>
               <tr *ngFor="#meeting of meetings; #i = index">
                 <td>{{i+1}}</td>
                 <td>{{meeting.numberOfAttendees}}</td>
                 <td>{{meeting.averageHourlyRate}}</td>
-                <td>{{meeting.currency.name}}</td>
+                <td>{{meeting.cost}} {{meeting.currency.name}}</td>
               </tr>
             </table>
           </div>

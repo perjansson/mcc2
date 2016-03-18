@@ -37,7 +37,7 @@ export class MeetingStatusComponent implements OnInit {
   @Input() meeting: Meeting;
   @Output() selected = new EventEmitter<Meeting>();
 
-  private currentMeetingCost: String;
+  private currentMeetingCost: number;
   private interval: any;
 
   constructor() { }

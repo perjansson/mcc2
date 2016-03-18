@@ -17,6 +17,7 @@ export class Meeting {
   name: string;
   location: Location;
   isGoodMeeting: boolean;
+  cost: number;
 
   constructor() {
     this.stopWatch = new AGStopwatch();
@@ -31,6 +32,7 @@ export class Meeting {
   stop() {
     this.status = MeetingStatus.Stopped;
     this.stopWatch.stop();
+    this.cost = this.getCost();
   }
 
   isNotStarted() {
@@ -46,7 +48,7 @@ export class Meeting {
   }
 
   getCost() {
-    return Math.round(this.getExactMeetingCost()).toFixed(0);
+    return parseFloat(Math.round(this.getExactMeetingCost()).toFixed(0));
   }
 
   getExactMeetingCost() {

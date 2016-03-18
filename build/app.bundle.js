@@ -36882,7 +36882,6 @@
 	    };
 	    MeetingComponent.prototype.startMeeting = function () {
 	        this.meeting.start();
-	        this.meetingService.saveMeeting(this.meeting);
 	    };
 	    MeetingComponent.prototype.stopMeeting = function () {
 	        this.meeting.stop();
@@ -36896,7 +36895,6 @@
 	    };
 	    MeetingComponent.prototype.onMeetingLocationFound = function (location) {
 	        this.meeting.location = location;
-	        console.log('onMeetingLocationFound: ' + location);
 	    };
 	    MeetingComponent.prototype.onCurrencyChange = function (newCurrencyKey) {
 	        this.meeting.currency = null;
@@ -36977,7 +36975,8 @@
 	        console.error(error);
 	        return Rx_1.Observable.throw(error.json().error || 'Server error');
 	    };
-	    MeetingService.MEETINGS_API = 'https://mcc2-backend.herokuapp.com/';
+	    //static MEETINGS_API: string = 'https://mcc2-backend.herokuapp.com/';
+	    MeetingService.MEETINGS_API = 'http://localhost:5000/';
 	    MeetingService = __decorate([
 	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [http_1.Http])
@@ -47003,6 +47002,7 @@
 	    Meeting.prototype.stop = function () {
 	        this.status = 1 /* Stopped */;
 	        this.stopWatch.stop();
+	        this.cost = this.getCost();
 	    };
 	    Meeting.prototype.isNotStarted = function () {
 	        return this.status === null;
@@ -47014,7 +47014,7 @@
 	        return this.status === 1 /* Stopped */;
 	    };
 	    Meeting.prototype.getCost = function () {
-	        return Math.round(this.getExactMeetingCost()).toFixed(0);
+	        return parseFloat(Math.round(this.getExactMeetingCost()).toFixed(0));
 	    };
 	    Meeting.prototype.getExactMeetingCost = function () {
 	        return this.getMeetingCostPerSecond() * this.getElapsedTimeInSeconds();
@@ -47403,7 +47403,7 @@
 	        core_1.Component({
 	            selector: 'meeting',
 	            styles: ["\n    .loader {\n      animation-delay: 0.5s;\n      animation-duration: 5s;\n    }\n    .fa-spinner.fa-spin {\n      font-size: 7em;\n      color: #337ab7;\n    }\n    .table {\n      font-size: 0.8em;\n    }\n    th, td {\n      text-align: left;\n    }\n    th {\n      color: #337ab7;\n    }\n    td {\n      font-size: 0.9em;\n    }\n  "],
-	            template: "\n    <article>\n      <section>\n        <div class=\"row\">\n          <div class=\"col-xs-12 loader animated fadeIn\" [hidden]=meetings>\n            <i class=\"fa fa-spinner fa-spin\"></i>\n          </div>\n          <div class=\"col-xs-12\" [hidden]=!meetings>\n            <table class=\"table table-striped table-hover\">\n              <tr>\n                <th width=\"10%\"></th>\n                <th width=\"30%\">Number of attendees</th>\n                <th width=\"30%\">Average hourly rate</th>\n                <th width=\"30%\">Currency</th>\n              </tr>\n              <tr *ngFor=\"#meeting of meetings; #i = index\">\n                <td>{{i+1}}</td>\n                <td>{{meeting.numberOfAttendees}}</td>\n                <td>{{meeting.averageHourlyRate}}</td>\n                <td>{{meeting.currency.name}}</td>\n              </tr>\n            </table>\n          </div>\n        </div>\n      </section>\n    </article>\n  ",
+	            template: "\n    <article>\n      <section>\n        <div class=\"row\">\n          <div class=\"col-xs-12 loader animated fadeIn\" [hidden]=meetings>\n            <i class=\"fa fa-spinner fa-spin\"></i>\n          </div>\n          <div class=\"col-xs-12\" [hidden]=!meetings>\n            <table class=\"table table-striped table-hover\">\n              <tr>\n                <th width=\"10%\"></th>\n                <th width=\"30%\">Number of attendees</th>\n                <th width=\"30%\">Average hourly rate</th>\n                <th width=\"30%\">Cost</th>\n              </tr>\n              <tr *ngFor=\"#meeting of meetings; #i = index\">\n                <td>{{i+1}}</td>\n                <td>{{meeting.numberOfAttendees}}</td>\n                <td>{{meeting.averageHourlyRate}}</td>\n                <td>{{meeting.cost}} {{meeting.currency.name}}</td>\n              </tr>\n            </table>\n          </div>\n        </div>\n      </section>\n    </article>\n  ",
 	            directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [meeting_service_1.MeetingService])

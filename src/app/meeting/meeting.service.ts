@@ -6,7 +6,8 @@ import {Meeting} from './meeting';
 @Injectable()
 export class MeetingService {
 
-  static MEETINGS_API: string = 'https://mcc2-backend.herokuapp.com/';
+  //static MEETINGS_API: string = 'https://mcc2-backend.herokuapp.com/';
+  static MEETINGS_API: string = 'http://localhost:5000/';
 
   private meetings: Meeting[];
   private meeting: Meeting;
