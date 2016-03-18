@@ -7,12 +7,14 @@ import {MeetingService} from './meeting.service';
   selector: 'meeting',
   styles: [`
     .loader {
+      color: #337ab7;
       animation-delay: 0.5s;
       animation-duration: 5s;
     }
-    .fa-spinner.fa-spin {
+    .fa {
       font-size: 7em;
-      color: #337ab7;
+      display: block;
+      margin-bottom: 10px;
     }
     .table {
       font-size: 0.8em;
@@ -32,9 +34,12 @@ import {MeetingService} from './meeting.service';
       <section>
         <div class="row">
           <div class="col-xs-12 loader animated fadeIn" [hidden]=meetings>
-            <i class="fa fa-spinner fa-spin"></i>
+            <i class="fa fa-spinner fa-spin"></i> Getting meetings
           </div>
-          <div class="col-xs-12" [hidden]=!meetings>
+          <div class="col-xs-12 loader animated fadeIn" [hidden]="!meetings || meetings.length">
+            <i class="fa fa-frown-o"></i> No meetings found
+          </div>
+          <div class="col-xs-12" [hidden]="!meetings || !meetings.length">
             <table class="table table-striped table-hover">
               <tr>
                 <th width="10%"></th>
