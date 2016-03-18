@@ -6,13 +6,35 @@ import {MeetingService} from './meeting.service';
 @Component({
   selector: 'meeting',
   styles: [`
+    .table {
+      font-size: 0.8em;
+    }
+    th, td {
+      text-align: left;
+    }
+    td {
+      font-size: 0.9em;
+    }
   `],
   template: `
     <article>
       <section>
         <div class="row">
           <div class="col-xs-12">
-            Meetings will come...
+            <table class="table table-striped table-hover">
+              <tr>
+                <th width="10%"></th>
+                <th width="30%">Number of attendees</th>
+                <th width="30%">Average hourly rate</th>
+                <th width="30%">Currency</th>
+              </tr>
+              <tr *ngFor="#meeting of meetings; #i = index">
+                <td>{{i+1}}</td>
+                <td>{{meeting.numberOfAttendees}}</td>
+                <td>{{meeting.averageHourlyRate}}</td>
+                <td>{{meeting.currency.name}}</td>
+              </tr>
+            </table>
           </div>
         </div>
       </section>
@@ -33,8 +55,8 @@ export class TopListComponent implements OnInit {
   getMeetings() {
     this.meetingService.findMeetings()
       .subscribe(
-        meetings => this.meetings = meetings
-    );
+      meetings => this.meetings = meetings
+      );
   }
 
 }
