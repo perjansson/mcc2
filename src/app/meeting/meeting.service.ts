@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Http, Response, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 import {Meeting} from './meeting';
 
@@ -30,8 +30,10 @@ export class MeetingService {
   }
 
   saveMeeting(meeting) {
-    console.log('saveMeeting', meeting);
-    return this._http.post(MeetingService.MEETINGS_API + 'meetings', meeting);
+    var meetingAsString = JSON.stringify(meeting);
+    console.log('saveMeeting', meetingAsString);
+    this._http.post(MeetingService.MEETINGS_API + 'meetings', meetingAsString)
+      .subscribe(response => console.log(response.json()));
   }
 
   getMeetingById(id: string) {

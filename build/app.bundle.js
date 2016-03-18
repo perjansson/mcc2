@@ -36882,12 +36882,10 @@
 	    };
 	    MeetingComponent.prototype.startMeeting = function () {
 	        this.meeting.start();
-	        console.log('startMeeting', this.meeting);
 	        this.meetingService.saveMeeting(this.meeting);
 	    };
 	    MeetingComponent.prototype.stopMeeting = function () {
 	        this.meeting.stop();
-	        console.log('stopMeeting', this.meeting);
 	        this.meetingService.saveMeeting(this.meeting);
 	    };
 	    MeetingComponent.prototype.onMeetingSelected = function () {
@@ -36963,8 +36961,10 @@
 	            .catch(this.handleError);
 	    };
 	    MeetingService.prototype.saveMeeting = function (meeting) {
-	        console.log('saveMeeting', meeting);
-	        return this._http.post(MeetingService.MEETINGS_API + 'meetings', meeting);
+	        var meetingAsString = JSON.stringify(meeting);
+	        console.log('saveMeeting', meetingAsString);
+	        this._http.post(MeetingService.MEETINGS_API + 'meetings', meetingAsString)
+	            .subscribe(function (response) { return console.log(response.json()); });
 	    };
 	    MeetingService.prototype.getMeetingById = function (id) {
 	        return Promise.resolve(this.meetings)
@@ -47402,7 +47402,7 @@
 	    TopListComponent = __decorate([
 	        core_1.Component({
 	            selector: 'meeting',
-	            styles: ["\n    .table {\n      font-size: 0.8em;\n    }\n    th, td {\n      text-align: left;\n    }\n    td {\n      font-size: 0.9em;\n    }\n  "],
+	            styles: ["\n    .table {\n      font-size: 0.8em;\n    }\n    th, td {\n      text-align: left;\n    }\n    th {\n      color: #337ab7;\n    }\n    td {\n      font-size: 0.9em;\n    }\n  "],
 	            template: "\n    <article>\n      <section>\n        <div class=\"row\">\n          <div class=\"col-xs-12\">\n            <table class=\"table table-striped table-hover\">\n              <tr>\n                <th width=\"10%\"></th>\n                <th width=\"30%\">Number of attendees</th>\n                <th width=\"30%\">Average hourly rate</th>\n                <th width=\"30%\">Currency</th>\n              </tr>\n              <tr *ngFor=\"#meeting of meetings; #i = index\">\n                <td>{{i+1}}</td>\n                <td>{{meeting.numberOfAttendees}}</td>\n                <td>{{meeting.averageHourlyRate}}</td>\n                <td>{{meeting.currency.name}}</td>\n              </tr>\n            </table>\n          </div>\n        </div>\n      </section>\n    </article>\n  ",
 	            directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
 	        }), 

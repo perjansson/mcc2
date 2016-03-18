@@ -12,6 +12,9 @@ import {MeetingService} from './meeting.service';
     th, td {
       text-align: left;
     }
+    th {
+      color: #337ab7;
+    }
     td {
       font-size: 0.9em;
     }
