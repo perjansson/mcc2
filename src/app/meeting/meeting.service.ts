@@ -32,7 +32,6 @@ export class MeetingService {
 
   saveMeeting(meeting) {
     var meetingAsString = JSON.stringify(meeting);
-    console.log('saveMeeting', meetingAsString);
     this._http.post(MeetingService.MEETINGS_API + 'meetings', meetingAsString)
       .subscribe(response => console.log(response.json()));
   }

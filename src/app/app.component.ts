@@ -1,5 +1,4 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {provide, Component, enableProdMode} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Location, LocationStrategy, HashLocationStrategy, PathLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {MeetingComponent} from './meeting/meeting.component';
@@ -98,10 +97,3 @@ export class AppComponent {
   }
 
 }
-
-enableProdMode();
-
-bootstrap(AppComponent, [
-    ROUTER_PROVIDERS,
-    provide(LocationStrategy, { useClass: HashLocationStrategy })
-]).catch(err => console.error(err));
