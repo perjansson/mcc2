@@ -162,7 +162,7 @@ import {Location} from '../common/location';
                 required
                 class="form-control mcc-input"
                 placeholder="Currency">
-                <option *ngFor="#currency of currencies" [value]="currency.key">{{currency.name}}</option>
+                <option *ngFor="let currency of currencies" [value]="currency.key">{{currency.name}}</option>
               </select>
             </div>
           </div>

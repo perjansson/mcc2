@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Location, LocationStrategy, HashLocationStrategy, PathLocationStrategy, APP_BASE_HREF} from 'angular2/router';
+import {Location} from 'angular2/platform/common';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {MeetingComponent} from './meeting/meeting.component';
 import {TopListComponent} from './meeting/toplist.component';
